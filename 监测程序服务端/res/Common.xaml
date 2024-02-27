@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:监测程序服务端.res">
+
+    <Style TargetType="Button" x:Key="WindowControlButtonStyle">
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Foreground" Value="DarkGoldenrod"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="Transparent" Name="back">
+                        <TextBlock Text="{Binding Content,RelativeSource={RelativeSource AncestorType=Button,Mode=FindAncestor}}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="/Fonts/#iconfont" FontSize="24"></TextBlock>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="back" Property="Background" Value="#22FFFFFF"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="back" Property="Background" Value="#44FFFFFF"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="stationTBStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Foreground" Value="DarkGoldenrod"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="eqTBStyle" TargetType="TextBlock" BasedOn="{StaticResource stationTBStyle}">
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <!--<Setter Property="Padding" Value="50,0,0,0"/>-->
+        <Setter Property="Margin" Value="45,0"/>
+    </Style>
+
+</ResourceDictionary>
