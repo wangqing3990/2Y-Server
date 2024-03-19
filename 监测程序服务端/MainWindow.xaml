@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:监测程序服务端"
         mc:Ignorable="d"
-        Title="2延监测程序服务端" Height="700" Width="1000" WindowStyle="None" Background="White" Icon="imgs/SG.ico" WindowStartupLocation="CenterScreen">
+        Title="2延监测程序服务端" Height="700" Width="1000" WindowStyle="None" Background="White" Icon="imgs/SG.ico" WindowStartupLocation="CenterScreen" Loaded="MainForm_Load" Closing="MainForm_FormClosing">
 
     <DockPanel>
-        <Grid Height="40" DockPanel.Dock="Top" Background="Wheat" MouseLeftButtonDown="MouseLeftButtonDown">
+        <Grid Height="40" DockPanel.Dock="Top" Background="NavajoWhite" MouseLeftButtonDown="MouseLeftButtonDown">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Image Source="imgs/SG.ico" Width="40" Height="40" HorizontalAlignment="Left"/>
-                <Label Content="2延监测程序服务端" FontSize="20" Foreground="DarkGoldenrod" Width="180"/>
+                <Label Content="2延监测程序服务端" FontSize="20" Foreground="DarkGoldenrod" Width="180" VerticalContentAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="40" Width="80" Grid.Column="1">
                 <Button Name="btnMin" Content="&#xe621;" Click="Button_Click" Style="{StaticResource WindowControlButtonStyle}"/>
@@ -61,7 +61,6 @@
                 <TextBlock Text="桑田岛" Grid.Row="13" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
 
                 <!-- 使用循环生成StackPanel -->
-                <!--<StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" x:Name="stackPanelContainer"/>-->
 
             </Grid>
         </DockPanel>
