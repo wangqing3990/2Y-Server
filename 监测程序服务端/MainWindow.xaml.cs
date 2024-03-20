@@ -36,7 +36,7 @@ namespace 监测程序服务端
             serverSocket.Start();
 
             // 启动一个新线程来监听客户端连接
-            Thread listenThread = new Thread(ListenForClients);
+            Thread listenThread = new Thread(() => Task.Run(async () => await ListenForClients()));
             listenThread.Start();
         }
 
@@ -47,48 +47,57 @@ namespace 监测程序服务端
         private Dictionary<string, TcpClient> clientDictionary = new Dictionary<string, TcpClient>();
 
         // 方法：根据客户端 IP 地址获取对应的 TcpClient 对象
-        private TcpClient GetTcpClientByIpAddress(string clientIpAddress)
+        private async Task<TcpClient> GetTcpClientByIpAddressAsync(string clientIpAddress)
         {
-            // 检查字典中是否包含指定的客户端 IP 地址
-            if (clientDictionary.ContainsKey(clientIpAddress))
+            return await Task.Run(() =>
             {
-                // 如果包含，则返回对应的 TcpClient 对象
-                return clientDictionary[clientIpAddress];
-            }
-            else
-            {
-                return null;
-            }
+                // 检查字典中是否包含指定的客户端 IP 地址
+                if (clientDictionary.ContainsKey(clientIpAddress))
+                {
+                    // 如果包含，则返回对应的 TcpClient 对象
+                    return clientDictionary[clientIpAddress];
+                }
+                else
+                {
+                    return null;
+                }
+            });
         }
 
         // 获取客户端 IP 地址的方法
-        private string GetClientIpAddress(TcpClient clientSocket)
+        private async Task<string> GetClientIpAddressAsync(TcpClient clientSocket)
         {
-            var clientEndPoint = clientSocket.Client.RemoteEndPoint as IPEndPoint;
-            return clientEndPoint.Address.ToString();
+            return await Task.Run(() =>
+            {
+                var clientEndPoint = clientSocket.Client.RemoteEndPoint as IPEndPoint;
+                return clientEndPoint.Address.ToString();
+            });
         }
 
-        private void ListenForClients()
+        private bool isListening = false;
+        private Thread listenThread;
+        private async Task ListenForClients()
         {
-            while (true)
+            isListening = true;
+            while (isListening)
             {
                 try
                 {
                     // 等待客户端连接
-                    clientSocket = serverSocket.AcceptTcpClient();
+                    clientSocket = await serverSocket.AcceptTcpClientAsync();
 
                     // 获取客户端的 IP 地址并添加到列表中
-                    string clientIpAddress = GetClientIpAddress(clientSocket);
+                    var clientIpAddress = await GetClientIpAddressAsync(clientSocket);
                     connectedClients.Add(clientIpAddress);
                     clientDictionary.Add(clientIpAddress, clientSocket);
 
                     // 启动一个新线程来处理客户端连接
-                    Thread clientThread = new Thread(() => HandleClient(clientSocket, clientIpAddress));
-                    clientThread.Start();
+                    listenThread = new Thread(() => HandleClient(clientSocket, clientIpAddress));
+                    listenThread.Start();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("ListenForClientsError: " + ex.Message);
                 }
             }
         }
@@ -124,6 +133,7 @@ namespace 监测程序服务端
                 clientDictionary.Remove(clientIpAddress);
 
                 // 关闭客户端连接
+                clientSocket.GetStream().Close(); // 关闭客户端的网络流
                 clientSocket.Close();
             }
         }
@@ -222,10 +232,10 @@ namespace 监测程序服务端
             {
                 try
                 {
-                    // 根据客户端 IP 地址获取对应的 TcpClient 对象
-                    TcpClient clientSocket = GetTcpClientByIpAddress(deviceIP);
+                    TcpClient clientSocket = await GetTcpClientByIpAddressAsync(deviceIP);
 
-                    // 如果获取到客户端对象，则向客户端发送心跳消息
+                    Brush foregroundBrush = Brushes.DarkGray;
+
                     if (clientSocket != null && clientSocket.Connected)
                     {
                         NetworkStream networkStream = clientSocket.GetStream();
@@ -233,34 +243,23 @@ namespace 监测程序服务端
                         networkStream.Write(heartbeat, 0, heartbeat.Length);
                         networkStream.Flush();
 
-                        foreach (StackPanel panel in grid.Children.OfType<StackPanel>())
-                        {
-                            foreach (TextBlock textBlock in panel.Children.OfType<TextBlock>())
-                            {
-                                string ip = textBlock.Tag as string;
-
-                                if (!string.IsNullOrEmpty(ip) && ip == deviceIP)
-                                {
-                                    try
-                                    {
-                                        await Task.Run(() =>
-                                        {
-                                            Dispatcher.Invoke(() =>
-                                            {
-                                                textBlock.Foreground = Brushes.Green ;
-                                            });
-                                        });
-                                    }
-                                    catch (Exception)
-                                    {
-                                        MessageBox.Show(e.ToString());
-                                    }
-                                    continue;
-                                }
-                            }
-                        }
+                        foregroundBrush = Brushes.Green;
                     }
-                    else
+
+                    UpdateTextBlockForeground(deviceIP, foregroundBrush);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Test:{ex.Message}");
+                }
+            }
+
+            // 更新 TextBlock 的前景色
+            async Task UpdateTextBlockForeground(string deviceIP, Brush brush)
+            {
+                await Task.Run(() =>
+                {
+                    Dispatcher.Invoke(() =>
                     {
                         foreach (StackPanel panel in grid.Children.OfType<StackPanel>())
                         {
@@ -270,43 +269,44 @@ namespace 监测程序服务端
 
                                 if (!string.IsNullOrEmpty(ip) && ip == deviceIP)
                                 {
-                                    try
-                                    {
-                                        await Task.Run(() =>
-                                        {
-                                            /*Ping ping = new Ping();
-                                            PingReply reply = await ping.SendPingAsync(ip, 500);
-                                            Brush foregroundColor = reply.Status == IPStatus.Success ? Brushes.Green : Brushes.DarkGray;*/
-
-                                            Dispatcher.Invoke(() =>
-                                            {
-                                                textBlock.Foreground = Brushes.DarkGray;
-                                            });
-                                        });
-                                    }
-                                    catch (Exception)
-                                    {
-                                        MessageBox.Show(e.ToString());
-                                    }
-                                    continue;
+                                    textBlock.Foreground = brush;
+                                    return; // 找到对应的 TextBlock 就可以直接返回
                                 }
                             }
                         }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    
-                }
+                    });
+                });
             }
 
             // 停止旋转动画
             transform.BeginAnimation(RotateTransform.AngleProperty, null);
         }
 
+        private async Task StopListeningForClients()
+        {
+            isListening = false; // 停止接受新的客户端连接
+
+            // 关闭 serverSocket
+            if (serverSocket != null)
+            {
+                serverSocket.Stop();
+            }
+
+            // 等待所有已连接的客户端连接完成并关闭他们的 clientSocket
+            foreach (var clientSocket in clientDictionary.Values)
+            {
+                if (clientSocket != null && clientSocket.Connected)
+                {
+                    clientSocket.Close();
+                }
+            }
+
+            // 等待所有处理客户端连接的线程完成
+            await Task.WhenAll(clientDictionary.Values.Select(c => Task.Run(() => c?.Close())));
+        }
         private void MainForm_FormClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            serverSocket.Stop();
+            StopListeningForClients();
         }
     }
 }
