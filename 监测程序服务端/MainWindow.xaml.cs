@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -95,6 +96,10 @@ namespace 监测程序服务端
                     listenThread = new Thread(() => HandleClient(clientSocket, clientIpAddress));
                     listenThread.Start();
                 }
+                catch (ObjectDisposedException)
+                {
+                    // 客户端主动关闭连接，可以忽略此异常
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show("ListenForClientsError: " + ex.Message);
@@ -110,6 +115,12 @@ namespace 监测程序服务端
                 byte[] buffer = new byte[1024];
                 int bytesRead;
 
+                // 检查客户端连接状态
+                if (!clientSocket.Connected)
+                {
+                    return;
+                }
+
                 while ((bytesRead = networkStream.Read(buffer, 0, buffer.Length)) > 0)
                 {
                     // 收到客户端消息，做相应处理
@@ -122,6 +133,14 @@ namespace 监测程序服务端
                     networkStream.Flush();
                 }
             }
+            catch (SocketException ex) when (ex.SocketErrorCode == SocketError.ConnectionReset || ex.SocketErrorCode == SocketError.ConnectionAborted)
+            {
+                // 远程主机强制关闭了连接，忽略该异常
+            }
+            catch (IOException ex)
+            {
+                // 客户端意外断开连接，不需要显示错误消息，可以忽略此异常
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Error handling client: " + ex.Message);
@@ -133,8 +152,11 @@ namespace 监测程序服务端
                 clientDictionary.Remove(clientIpAddress);
 
                 // 关闭客户端连接
-                clientSocket.GetStream().Close(); // 关闭客户端的网络流
-                clientSocket.Close();
+                if (clientSocket != null && clientSocket.Connected)
+                {
+                    clientSocket.GetStream().Close(); // 关闭客户端的网络流
+                    clientSocket.Close();
+                }
             }
         }
 
@@ -235,6 +257,7 @@ namespace 监测程序服务端
                     TcpClient clientSocket = await GetTcpClientByIpAddressAsync(deviceIP);
 
                     Brush foregroundBrush = Brushes.DarkGray;
+                    string message = "";
 
                     if (clientSocket != null && clientSocket.Connected)
                     {
@@ -243,10 +266,21 @@ namespace 监测程序服务端
                         networkStream.Write(heartbeat, 0, heartbeat.Length);
                         networkStream.Flush();
 
+                        await Task.Delay(100);
+
+                        byte[] buffer = new byte[1024];
+                        int bytesRead;
+
+                        while ((bytesRead = networkStream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            // 收到客户端消息，做相应处理
+                            message += Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                        }
+                        MessageBox.Show(message);
                         foregroundBrush = Brushes.Green;
                     }
 
-                    UpdateTextBlockForeground(deviceIP, foregroundBrush);
+                    UpdateTextBlockForeground(deviceIP, foregroundBrush, message);
                 }
                 catch (Exception ex)
                 {
@@ -255,7 +289,7 @@ namespace 监测程序服务端
             }
 
             // 更新 TextBlock 的前景色
-            async Task UpdateTextBlockForeground(string deviceIP, Brush brush)
+            async Task UpdateTextBlockForeground(string deviceIP, Brush brush, string message)
             {
                 await Task.Run(() =>
                 {
@@ -270,6 +304,7 @@ namespace 监测程序服务端
                                 if (!string.IsNullOrEmpty(ip) && ip == deviceIP)
                                 {
                                     textBlock.Foreground = brush;
+                                    textBlock.ToolTip = message;
                                     return; // 找到对应的 TextBlock 就可以直接返回
                                 }
                             }
