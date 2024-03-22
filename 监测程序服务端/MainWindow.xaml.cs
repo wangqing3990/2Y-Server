@@ -112,11 +112,13 @@ namespace 监测程序服务端
         {
             try
             {
-                while (true)// 持续处理客户端的心跳信息
+                while (true)
                 {
-                    await ProcessDeviceIPAsync(clientSocket,clientIpAddress);
+                    await ProcessDeviceIPAsync(clientSocket, clientIpAddress);
                     await Task.Delay(1000);
                 }
+                    
+                
             }
             catch (SocketException ex) when (ex.SocketErrorCode == SocketError.ConnectionReset || ex.SocketErrorCode == SocketError.ConnectionAborted)
             {
@@ -156,37 +158,57 @@ namespace 监测程序服务端
 
             await Task.WhenAll(tasks);
         }*/
+
         private async Task ProcessDeviceIPAsync(TcpClient clientSocket, string deviceIP)
         {
             try
             {
-                Brush foregroundBrush = Brushes.DarkGray;
-                string message = "";
+                Brush foregroundBrush=Brushes.Black;
+                StringBuilder messageBuilder = new StringBuilder();
+                string message = null;
 
-                MessageBox.Show(clientSocket.ToString());
+                // MessageBox.Show(clientSocket.ToString());
 
                 if (clientSocket != null && clientSocket.Connected)
                 {
-                    NetworkStream networkStream = clientSocket.GetStream();
-                    networkStream.ReadTimeout = 2000;
-                    byte[] buffer = new byte[1024];
-                    int bytesRead;
-                    
-                    while ((bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                    using (NetworkStream networkStream = clientSocket.GetStream())
                     {
-                        // 收到客户端消息，做相应处理
-                        message += Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                        byte[] buffer = new byte[1024];
+                        int bytesRead;
+
+                        // MessageBox.Show("开始接收消息");
+                        while ((bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                        {
+                            string receivedData = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                            messageBuilder.Append(receivedData);
+
+                            if (receivedData.Contains("\n"))
+                            {
+                                // 收到换行符，表示消息接收完整
+                                message = messageBuilder.ToString().TrimEnd('\n');
+                                foregroundBrush = Brushes.Green;
+                                await UpdateTextBlockForegroundAsync(deviceIP, foregroundBrush, message);
+                                messageBuilder.Clear();
+                            }
+                        }
                     }
-
-                    foregroundBrush = Brushes.Green;
-                    // networkStream.Close();
                 }
-
-                await UpdateTextBlockForegroundAsync(deviceIP, foregroundBrush, message);
+                else
+                {
+                    foregroundBrush = Brushes.DarkGray;
+                    await UpdateTextBlockForegroundAsync(deviceIP, foregroundBrush, message);
+                }
             }
             catch (Exception ex)
             {
-                // 处理异常
+                try
+                {
+                    clientSocket.Close();
+                }
+                catch (Exception)
+                {
+                    
+                }
             }
         }
         // 更新 TextBlock 的前景色
@@ -203,7 +225,7 @@ namespace 监测程序服务端
                         if (!string.IsNullOrEmpty(ip) && ip == deviceIP)
                         {
                             textBlock.Foreground = brush;
-                            textBlock.ToolTip = message;
+                            textBlock.ToolTip = $"{deviceIP}\r\n{message}";
                             return; // 找到对应的 TextBlock 就可以直接返回
                         }
                     }
