@@ -42,24 +42,23 @@
                     <ColumnDefinition Width="8*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="刷新" FontSize="25" Click="BtnRefresh_Click" Style="{StaticResource RefreshBtnStyle}"/>
-                    <TextBlock x:Name="refreshIcon" Text="&#xe60b;" FontFamily="/Fonts/#iconfont" FontSize="40" VerticalAlignment="Center" Foreground="Red"/>
-                </StackPanel>
-                <TextBlock Text="骑河" Grid.Row="1" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="富翔路" Grid.Row="2" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="尹中路" Grid.Row="3" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="郭巷" Grid.Row="4" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="郭苑路" Grid.Row="5" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="尹山湖" Grid.Row="6" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="独墅湖南" Grid.Row="7" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="独墅湖邻里中心" Grid.Row="8" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="月亮湾" Grid.Row="9" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="松涛街" Grid.Row="10" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="金谷路" Grid.Row="11" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="金尚路" Grid.Row="12" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
-                <TextBlock Text="桑田岛" Grid.Row="13" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
 
+                <TextBlock Text="骑河" Grid.Row="0" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="富翔路" Grid.Row="1" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="尹中路" Grid.Row="2" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="郭巷" Grid.Row="3" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="郭苑路" Grid.Row="4" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="尹山湖" Grid.Row="5" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="独墅湖南" Grid.Row="6" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="独墅湖邻里中心" Grid.Row="7" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="月亮湾" Grid.Row="8" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="松涛街" Grid.Row="9" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="金谷路" Grid.Row="10" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="金尚路" Grid.Row="11" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <TextBlock Text="桑田岛" Grid.Row="12" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <StackPanel Grid.Row="13" Grid.Column="1" Orientation="Horizontal">
+                    <Label Name="lbVersion" VerticalAlignment="Center" Margin="600,0,10,0" FontSize="18" Foreground="MidnightBlue" Content="版本号：V1.0.0.0"/>
+                </StackPanel>
                 <!-- 使用循环生成StackPanel -->
 
             </Grid>
