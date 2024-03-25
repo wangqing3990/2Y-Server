@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace 监测程序服务端
 {
@@ -26,19 +27,25 @@ namespace 监测程序服务端
         public MainWindow()
         {
             InitializeComponent();
-            CreateStackPanels();//动态创建设备图标
+            
         }
         private void MainForm_Load(object sender, RoutedEventArgs e)
         {
-            // 初始化服务端Socket监听
-            string ipAddress = "172.22.50.3";
-            int port = 8888;
-            serverSocket = new TcpListener(IPAddress.Parse(ipAddress), port);
-            serverSocket.Start();
+            CreateStackPanels();//动态创建设备图标
+            initServerSocket();
 
             // 启动监听客户端连接
             ListenForClients();
             lbVersion.Content = $"版本号：V{Assembly.GetEntryAssembly()?.GetName().Version}";
+        }
+
+        private void initServerSocket()
+        {
+            // 初始化服务端Socket监听
+            string ipAddress = "172.22.50.3";
+            int port = 49200;
+            serverSocket = new TcpListener(IPAddress.Parse(ipAddress), port);
+            serverSocket.Start();
         }
 
         // 定义一个字典，用于存储客户端 IP 地址与对应的 TcpClient 对象
@@ -146,7 +153,7 @@ namespace 监测程序服务端
                             {
                                 // 收到换行符，表示消息接收完整
                                 message = messageBuilder.ToString().TrimEnd('\n');
-                                if (message=="clientSocket close")
+                                if (message == "clientSocket close")
                                 {
                                     break;
                                 }
@@ -156,7 +163,7 @@ namespace 监测程序服务端
                             }
                         }
 
-                        MessageBox.Show($"检测到连接中断,更新{firstIP}为灰色");
+                        // MessageBox.Show($"检测到连接中断,更新{firstIP}为灰色");
                         await UpdateTextBlockForegroundAsync(firstIP, Brushes.DarkGray, null);
                     }
                 }
@@ -256,21 +263,53 @@ namespace 监测程序服务端
             {
                 Close();
             }
+
             if (btn == btnMin)
             {
                 WindowState = WindowState.Minimized;
             }
+
+            if (btn == btnRefresh)
+            {
+                refreshAnimation();
+                try
+                {
+                    StopListeningForClients();
+                    initServerSocket();
+                    ListenForClients();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
+                // refreshIcon.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, null);
+            }
         }
 
+        private void refreshAnimation()
+        {
+            // 创建一个旋转动画
+            DoubleAnimation rotateAnimation = new DoubleAnimation();
+            rotateAnimation.From = 0;
+            rotateAnimation.To = 360;
+            rotateAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
+            rotateAnimation.RepeatBehavior = new RepeatBehavior(30);
+            // rotateAnimation.RepeatBehavior = RepeatBehavior.Forever;
+
+            // 创建一个旋转转换，并将其应用到TextBlock的RenderTransform属性上
+            RotateTransform transform = new RotateTransform();
+            refreshIcon.RenderTransformOrigin = new Point(0.5, 0.5);
+            refreshIcon.RenderTransform = transform;
+
+            // 将动画应用到RotateTransform的Angle属性上
+            transform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
+
+        }
 
         private async Task StopListeningForClients()
         {
             isListening = false; // 停止接受新的客户端连接
-            // 关闭 serverSocket
-            if (serverSocket != null)
-            {
-                serverSocket.Stop();
-            }
 
             // 等待所有已连接的客户端连接完成并关闭他们的 clientSocket
             foreach (var clientSocket in clientDictionary.Values)
@@ -279,6 +318,12 @@ namespace 监测程序服务端
                 {
                     clientSocket.Close();
                 }
+            }
+
+            // 关闭 serverSocket
+            if (serverSocket != null)
+            {
+                serverSocket.Stop();
             }
 
             // 等待所有处理客户端连接的线程完成

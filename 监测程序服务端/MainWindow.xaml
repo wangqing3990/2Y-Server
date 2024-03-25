@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:监测程序服务端"
         mc:Ignorable="d"
-        Title="2延监测程序服务端" Height="700" Width="1000" WindowStyle="None" Background="White" Icon="imgs/SG.ico" WindowStartupLocation="CenterScreen" Loaded="MainForm_Load" Closing="MainForm_FormClosing">
+        Title="2延监测程序服务端" Height="700" Width="1050" WindowStyle="None" Background="White" Icon="imgs/SG.ico" WindowStartupLocation="CenterScreen" Loaded="MainForm_Load" Closing="MainForm_FormClosing">
 
     <DockPanel>
         <Grid Height="40" DockPanel.Dock="Top" Background="NavajoWhite" MouseLeftButtonDown="MouseLeftButtonDown">
@@ -56,8 +56,12 @@
                 <TextBlock Text="金谷路" Grid.Row="10" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
                 <TextBlock Text="金尚路" Grid.Row="11" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
                 <TextBlock Text="桑田岛" Grid.Row="12" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
+                <StackPanel Grid.Row="13" Grid.Column="0" Orientation="Horizontal">
+                    <Button Name="btnRefresh" Content="刷新" Style="{StaticResource RefreshBtnStyle}" Width="100" Height="40" Margin="30,0,10,0" Click="Button_Click"/>
+                    <TextBlock Name="refreshIcon" Width="40" Height="40" Text="&#xe60b;" FontSize="40" FontFamily="/Fonts/#iconfont" VerticalAlignment="Center" Foreground="Red"/>
+                </StackPanel>
                 <StackPanel Grid.Row="13" Grid.Column="1" Orientation="Horizontal">
-                    <Label Name="lbVersion" VerticalAlignment="Center" Margin="600,0,10,0" FontSize="18" Foreground="MidnightBlue" Content="版本号：V1.0.0.0"/>
+                    <Label Name="lbVersion" VerticalAlignment="Center" Margin="650,0,10,0" FontSize="18" Foreground="MidnightBlue" Content="版本号：V1.0.0.0"/>
                 </StackPanel>
                 <!-- 使用循环生成StackPanel -->
 

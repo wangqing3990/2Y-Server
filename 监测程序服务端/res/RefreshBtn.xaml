@@ -3,13 +3,21 @@
                     xmlns:local="clr-namespace:监测程序服务端.res">
 
     <Style x:Key="RefreshBtnStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="20"></Setter>
         <Setter Property="Width" Value="80"/>
         <Setter Property="Margin" Value="50,0,0,0"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="DodgerBlue"/>
         <Setter Property="Background" Value="LightBlue"/>
-        <Setter Property="BorderBrush" Value="LightBlue"/>
-        
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="DarkOrange"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
 </ResourceDictionary>
