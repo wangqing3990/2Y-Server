@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:监测程序服务端"
         mc:Ignorable="d"
-        Title="2延监测程序服务端" Height="700" Width="1050" WindowStyle="None" Background="White" Icon="imgs/SG.ico" WindowStartupLocation="CenterScreen" Loaded="MainForm_Load" Closing="MainForm_FormClosing">
+        Title="2延监测程序服务端" Height="700" Width="1050" WindowStyle="None" Background="White" Icon="/imgs/SG.png" WindowStartupLocation="CenterScreen" Loaded="MainForm_Load" Closing="MainForm_FormClosing">
 
     <DockPanel>
         <Grid Height="40" DockPanel.Dock="Top" Background="NavajoWhite" MouseLeftButtonDown="MouseLeftButtonDown">
