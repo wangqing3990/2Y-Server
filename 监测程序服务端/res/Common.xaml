@@ -40,4 +40,6 @@
         <Setter Property="Margin" Value="45,0"/>
     </Style>
 
+    <FontFamily x:Key="IconFontFamily">pack://application:,,,/Fonts/#iconfont</FontFamily>
+
 </ResourceDictionary>

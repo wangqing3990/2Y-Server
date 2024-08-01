@@ -32,10 +32,17 @@ namespace 监测程序服务端
         private void MainForm_Load(object sender, RoutedEventArgs e)
         {
             CreateStackPanels();//动态创建设备图标
-            initServerSocket();
+            try
+            {
+                initServerSocket();
 
-            // 启动监听客户端连接
-            ListenForClients();
+                // 启动监听客户端连接
+                ListenForClients();
+            }
+            catch (Exception exception)
+            {
+            }
+            
             lbVersion.Content = $"版本号：V{Assembly.GetEntryAssembly()?.GetName().Version}";
         }
 
@@ -43,6 +50,7 @@ namespace 监测程序服务端
         {
             // 初始化服务端Socket监听
             string ipAddress = "172.22.50.3";
+
             int port = 49200;
             serverSocket = new TcpListener(IPAddress.Parse(ipAddress), port);
             serverSocket.Start();
@@ -215,6 +223,7 @@ namespace 监测程序服务端
                 { "172.22.52.175", "172.22.52.176", "172.22.52.181", "172.22.52.182", "172.22.52.161", "172.22.52.162", "", "" }, // jslDevIPs
                 { "172.22.53.177", "172.22.53.178", "172.22.53.179", "172.22.53.181", "172.22.53.182", "172.22.53.183", "172.22.53.161", "172.22.53.162" } // stdDevIPs
         };
+
         StackPanel stackPanel;
         private void CreateStackPanels()
         {
