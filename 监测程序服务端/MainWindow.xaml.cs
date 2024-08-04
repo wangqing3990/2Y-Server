@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,11 +26,84 @@ namespace 监测程序服务端
         public MainWindow()
         {
             InitializeComponent();
-            
+        }
+        /*private List<T> FindAGMCustomControls<T>(DependencyObject parent) where T : DependencyObject
+        {
+            List<T> controls = new List<T>();
+
+            int childCount = VisualTreeHelper.GetChildrenCount(parent);
+
+            for (int i = 0; i < childCount; i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+
+                if (child is T typedChild)
+                {
+                    controls.Add(typedChild);
+                }
+                else if (child is TabItem tabItem && tabItem.Content is DependencyObject tabContent)
+                {
+                    controls.AddRange(FindAGMCustomControls<T>(tabContent));
+                }
+                else
+                {
+                    controls.AddRange(FindAGMCustomControls<T>(child));
+                }
+            }
+
+            return controls;
+        }*/
+        private List<T> FindAGMCustomControls<T>(DependencyObject parent) where T : DependencyObject
+        {
+            List<T> controls = new List<T>();
+            Queue<DependencyObject> queue = new Queue<DependencyObject>();
+            queue.Enqueue(parent);
+
+            while (queue.Count > 0)
+            {
+                DependencyObject current = queue.Dequeue();
+                int childCount = VisualTreeHelper.GetChildrenCount(current);
+
+                for (int i = 0; i < childCount; i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(current, i);
+
+                    if (child is T typedChild)
+                    {
+                        controls.Add(typedChild);
+                    }
+                    queue.Enqueue(child);
+                }
+            }
+
+            return controls;
+        }
+
+        // 查找并处理自定义控件
+        private void ProcessCustomControls()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                List<AGMping> customControls1 = FindAGMCustomControls<AGMping>(TCjc);
+                List<AGMshu> customControls2 = FindAGMCustomControls<AGMshu>(TCjc);
+
+                foreach (AGMping AGMPing in customControls1)
+                {
+                    AGMPing.lblname.Content = AGMPing.Name.Substring(Math.Max(0, AGMPing.Name.Length - 6), 6);
+                }
+
+                foreach (AGMshu AGMShu in customControls2)
+                {
+                    AGMShu.lblname.Content = AGMShu.Name.Substring(Math.Max(0, AGMShu.Name.Length - 6), 6);
+                }
+            });
         }
         private void MainForm_Load(object sender, RoutedEventArgs e)
         {
             CreateStackPanels();//动态创建设备图标
+            LoadAllTabItems(TCjc);
+            ProcessCustomControls();
+
             try
             {
                 initServerSocket();
@@ -42,8 +114,8 @@ namespace 监测程序服务端
             catch (Exception exception)
             {
             }
-            
-            lbVersion.Content = $"版本号：V{Assembly.GetEntryAssembly()?.GetName().Version}";
+
+            // lbVersion.Content = $"版本号：V{Assembly.GetEntryAssembly()?.GetName().Version}";
         }
 
         private void initServerSocket()
@@ -277,23 +349,6 @@ namespace 监测程序服务端
             {
                 WindowState = WindowState.Minimized;
             }
-
-            if (btn == btnRefresh)
-            {
-                refreshAnimation();
-                try
-                {
-                    StopListeningForClients();
-                    initServerSocket();
-                    ListenForClients();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                
-                // refreshIcon.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, null);
-            }
         }
 
         private void refreshAnimation()
@@ -308,8 +363,8 @@ namespace 监测程序服务端
 
             // 创建一个旋转转换，并将其应用到TextBlock的RenderTransform属性上
             RotateTransform transform = new RotateTransform();
-            refreshIcon.RenderTransformOrigin = new Point(0.5, 0.5);
-            refreshIcon.RenderTransform = transform;
+            // refreshIcon.RenderTransformOrigin = new Point(0.5, 0.5);
+            // refreshIcon.RenderTransform = transform;
 
             // 将动画应用到RotateTransform的Angle属性上
             transform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
@@ -341,6 +396,33 @@ namespace 监测程序服务端
         private void MainForm_FormClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             StopListeningForClients();
+        }
+
+        private void TCwsd_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadAllTabItems(TCjc);
+            ProcessCustomControls();
+        }
+        private void LoadAllTabItems(TabControl tabControl)
+        {
+            foreach (TabItem tabItem in tabControl.Items)
+            {
+                if (tabItem.Content is FrameworkElement content)
+                {
+                    content.Loaded += (s, e) => { };
+
+                    if (content is TabControl nestedTabControl)
+                    {
+                        LoadAllTabItems(nestedTabControl); // 递归加载嵌套的TabControl中的所有TabItem
+                    }
+                }
+            }
+        }
+
+        private void TCjc_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadAllTabItems(TCjc);
+            ProcessCustomControls();
         }
     }
 }

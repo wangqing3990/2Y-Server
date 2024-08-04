@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:监测程序服务端"
         mc:Ignorable="d"
-        Title="2延监测程序服务端" Height="700" Width="1050" WindowStyle="None" Background="White" Icon="/imgs/SG.png" WindowStartupLocation="CenterScreen" Loaded="MainForm_Load" Closing="MainForm_FormClosing">
+        Title="2延监测程序服务端" Height="750" Width="1100" WindowStyle="None" Background="White" Icon="/imgs/SG.png" WindowStartupLocation="CenterScreen" Loaded="MainForm_Load" Closing="MainForm_FormClosing">
 
     <DockPanel>
         <Grid Height="40" DockPanel.Dock="Top" Background="NavajoWhite" MouseLeftButtonDown="MouseLeftButtonDown">
@@ -20,9 +20,395 @@
         </Grid>
 
         <DockPanel LastChildFill="True">
-            <TabControl>
-                <TabItem Name="TCzt" Header="状态" FontSize="24" Foreground="ForestGreen" Background="NavajoWhite">
+            <TabControl x:Name="TCjc" SelectionChanged="TCjc_OnSelectionChanged">
+                <!-- 温湿度 -->
+                <TabItem x:Name="TIwsd" Header="温湿度" FontSize="24" Foreground="ForestGreen" Background="NavajoWhite">
+                    <Grid>
+                        <TabControl x:Name="TCwsd" TabStripPlacement="Left" DockPanel.Dock="Top" Margin="5" >
+                            <TabItem Header="尹中路">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="尹中路" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
+                                            <local:AGMshu x:Name="yzlAGM009" Margin="10,0"/>
+                                            <local:AGMshu x:Name="yzlAGM010" Margin="10,0" />
+                                            <local:AGMshu x:Name="yzlAGM011" Margin="10,0" />
+                                            <local:AGMshu x:Name="yzlAGM012" Margin="10,0" />
+                                            <local:AGMshu x:Name="yzlAGM013" Margin="10,0" />
+                                            <local:AGMshu x:Name="yzlAGM014" Margin="10,0" />
+                                            <local:AGMshu x:Name="yzlAGM015" Margin="10,0" />
+                                            <local:AGMshu x:Name="yzlAGM016" Margin="10,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="yzlAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="yzlAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="yzlAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="yzlAGM004" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="yzlAGM005" Margin="0,10"/>
+                                                <local:AGMping x:Name="yzlAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="yzlAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="yzlAGM008" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="郭巷">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="郭巷" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="130,30" Height="100">
+                                            <local:AGMshu x:Name="gxAGM011" Margin="5,0"/>
+                                            <local:AGMshu x:Name="gxAGM012" Margin="5,0" />
+                                            <local:AGMshu x:Name="gxAGM013" Margin="5,0" />
+                                            <local:AGMshu x:Name="gxAGM014" Margin="5,0" />
+                                            <local:AGMshu x:Name="gxAGM015" Margin="5,0" />
+                                            <local:AGMshu x:Name="gxAGM016" Margin="5,0" />
+                                            <local:AGMshu x:Name="gxAGM017" Margin="5,0" />
+                                            <local:AGMshu x:Name="gxAGM018" Margin="5,0" />
+                                            <local:AGMshu x:Name="gxAGM019" Margin="5,0" />
+                                            <local:AGMshu x:Name="gxAGM020" Margin="5,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="gxAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="gxAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="gxAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="gxAGM004" Margin="0,10"/>
+                                                <local:AGMping x:Name="gxAGM005" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="gxAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="gxAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="gxAGM008" Margin="0,10"/>
+                                                <local:AGMping x:Name="gxAGM009" Margin="0,10"/>
+                                                <local:AGMping x:Name="gxAGM010" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="郭苑路">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="郭苑路" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
+                                            <local:AGMshu x:Name="gylAGM009" Margin="10,0"/>
+                                            <local:AGMshu x:Name="gylAGM010" Margin="10,0" />
+                                            <local:AGMshu x:Name="gylAGM011" Margin="10,0" />
+                                            <local:AGMshu x:Name="gylAGM012" Margin="10,0" />
+                                            <local:AGMshu x:Name="gylAGM013" Margin="10,0" />
+                                            <local:AGMshu x:Name="gylAGM014" Margin="10,0" />
+                                            <local:AGMshu x:Name="gylAGM015" Margin="10,0" />
+                                            <local:AGMshu x:Name="gylAGM016" Margin="10,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="gylAGM005" Margin="0,10"/>
+                                                <local:AGMping x:Name="gylAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="gylAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="gylAGM008" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="gylAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="gylAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="gylAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="gylAGM004" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="尹山湖">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="尹山湖" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
+                                            <local:AGMshu x:Name="yshAGM009" Margin="10,0"/>
+                                            <local:AGMshu x:Name="yshAGM010" Margin="10,0" />
+                                            <local:AGMshu x:Name="yshAGM011" Margin="10,0" />
+                                            <local:AGMshu x:Name="yshAGM012" Margin="10,0" />
+                                            <local:AGMshu x:Name="yshAGM013" Margin="10,0" />
+                                            <local:AGMshu x:Name="yshAGM014" Margin="10,0" />
+                                            <local:AGMshu x:Name="yshAGM015" Margin="10,0" />
+                                            <local:AGMshu x:Name="yshAGM016" Margin="10,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="yshAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="yshAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="yshAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="yshAGM004" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="yshAGM005" Margin="0,10"/>
+                                                <local:AGMping x:Name="yshAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="yshAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="yshAGM008" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="独墅湖南">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="独墅湖南" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
+                                            <local:AGMshu x:Name="dshnAGM009" Margin="10,0"/>
+                                            <local:AGMshu x:Name="dshnAGM010" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshnAGM011" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshnAGM012" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshnAGM013" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshnAGM014" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshnAGM015" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshnAGM016" Margin="10,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="dshnAGM005" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshnAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshnAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshnAGM008" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="dshnAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshnAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshnAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshnAGM004" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header=" 独墅湖邻里中心" Margin="0,-1,-2,-3" FontSize="15" Height="40">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="独墅湖邻里中心" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
+                                            <local:AGMshu x:Name="dshllzxAGM009" Margin="10,0"/>
+                                            <local:AGMshu x:Name="dshllzxAGM010" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshllzxAGM011" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshllzxAGM012" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshllzxAGM013" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshllzxAGM014" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshllzxAGM015" Margin="10,0" />
+                                            <local:AGMshu x:Name="dshllzxAGM016" Margin="10,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="dshllzxAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshllzxAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshllzxAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshllzxAGM004" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="dshllzxAGM005" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshllzxAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshllzxAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="dshllzxAGM008" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="月亮湾">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                                <local:AGMping x:Name="ylwAGM011" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM012" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM013" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM014" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM005" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM004" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM003" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM002" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM001" Margin="0,5"/>
+                                            </StackPanel>
+                                            <StackPanel Width="600" VerticalAlignment="Center">
+                                                <Label Content="月亮湾" FontSize="50" HorizontalAlignment="Center"></Label>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="0,0">
+                                                <local:AGMping x:Name="ylwAGM015" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM016" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM017" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM018" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM019" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM020" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM021" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM022" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM023" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM024" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM025" Margin="0,3"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="松涛街">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="松涛街" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="130,30" Height="100">
+                                            <local:AGMshu x:Name="stjAGM011" Margin="5,0"/>
+                                            <local:AGMshu x:Name="stjAGM012" Margin="5,0" />
+                                            <local:AGMshu x:Name="stjAGM013" Margin="5,0" />
+                                            <local:AGMshu x:Name="stjAGM014" Margin="5,0" />
+                                            <local:AGMshu x:Name="stjAGM015" Margin="5,0" />
+                                            <local:AGMshu x:Name="stjAGM016" Margin="5,0" />
+                                            <local:AGMshu x:Name="stjAGM017" Margin="5,0" />
+                                            <local:AGMshu x:Name="stjAGM018" Margin="5,0" />
+                                            <local:AGMshu x:Name="stjAGM019" Margin="5,0" />
+                                            <local:AGMshu x:Name="stjAGM020" Margin="5,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="stjAGM001" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM002" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM003" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM004" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM005" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM021" Margin="0,5"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="stjAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="stjAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="stjAGM008" Margin="0,10"/>
+                                                <local:AGMping x:Name="stjAGM009" Margin="0,10"/>
+                                                <local:AGMping x:Name="stjAGM010" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="金谷路">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="金谷路" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
+                                            <local:AGMshu x:Name="jglAGM009" Margin="10,0"/>
+                                            <local:AGMshu x:Name="jglAGM010" Margin="10,0" />
+                                            <local:AGMshu x:Name="jglAGM011" Margin="10,0" />
+                                            <local:AGMshu x:Name="jglAGM012" Margin="10,0" />
+                                            <local:AGMshu x:Name="jglAGM013" Margin="10,0" />
+                                            <local:AGMshu x:Name="jglAGM014" Margin="10,0" />
+                                            <local:AGMshu x:Name="jglAGM015" Margin="10,0" />
+                                            <local:AGMshu x:Name="jglAGM016" Margin="10,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="jglAGM005" Margin="0,10"/>
+                                                <local:AGMping x:Name="jglAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="jglAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="jglAGM008" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="jglAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="jglAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="jglAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="jglAGM004" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="金尚路">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="金尚路" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
+                                            <local:AGMshu x:Name="jslAGM009" Margin="10,0"/>
+                                            <local:AGMshu x:Name="jslAGM010" Margin="10,0" />
+                                            <local:AGMshu x:Name="jslAGM011" Margin="10,0" />
+                                            <local:AGMshu x:Name="jslAGM012" Margin="10,0" />
+                                            <local:AGMshu x:Name="jslAGM013" Margin="10,0" />
+                                            <local:AGMshu x:Name="jslAGM014" Margin="10,0" />
+                                            <local:AGMshu x:Name="jslAGM015" Margin="10,0" />
+                                            <local:AGMshu x:Name="jslAGM016" Margin="10,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="jslAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="jslAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="jslAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="jslAGM004" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="jslAGM005" Margin="0,10"/>
+                                                <local:AGMping x:Name="jslAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="jslAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="jslAGM008" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                            <TabItem Header="桑田岛">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Label Content="桑田岛" FontSize="50"></Label>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="130,30" Height="100">
+                                            <local:AGMshu x:Name="stdAGM011" Margin="5,0"/>
+                                            <local:AGMshu x:Name="stdAGM012" Margin="5,0" />
+                                            <local:AGMshu x:Name="stdAGM013" Margin="5,0" />
+                                            <local:AGMshu x:Name="stdAGM014" Margin="5,0" />
+                                            <local:AGMshu x:Name="stdAGM015" Margin="5,0" />
+                                            <local:AGMshu x:Name="stdAGM016" Margin="5,0" />
+                                            <local:AGMshu x:Name="stdAGM017" Margin="5,0" />
+                                            <local:AGMshu x:Name="stdAGM018" Margin="5,0" />
+                                            <local:AGMshu x:Name="stdAGM019" Margin="5,0" />
+                                            <local:AGMshu x:Name="stdAGM020" Margin="5,0" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="50,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <local:AGMping x:Name="stdAGM001" Margin="0,10"/>
+                                                <local:AGMping x:Name="stdAGM002" Margin="0,10"/>
+                                                <local:AGMping x:Name="stdAGM003" Margin="0,10"/>
+                                                <local:AGMping x:Name="stdAGM004" Margin="0,10"/>
+                                                <local:AGMping x:Name="stdAGM005" Margin="0,10"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical" Margin="600,0">
+                                                <local:AGMping x:Name="stdAGM006" Margin="0,10"/>
+                                                <local:AGMping x:Name="stdAGM007" Margin="0,10"/>
+                                                <local:AGMping x:Name="stdAGM008" Margin="0,10"/>
+                                                <local:AGMping x:Name="stdAGM009" Margin="0,10"/>
+                                                <local:AGMping x:Name="stdAGM010" Margin="0,10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </TabItem>
 
+                <!-- 状态 -->
+                <TabItem Name="TCzt" Header="状态" FontSize="24" Foreground="ForestGreen" Background="NavajoWhite">
                     <Grid Name="grid">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -44,7 +430,6 @@
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="8*"/>
                         </Grid.ColumnDefinitions>
-
 
                         <TextBlock Text="骑河" Grid.Row="0" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
                         <TextBlock Text="富翔路" Grid.Row="1" Grid.Column="0" Style="{StaticResource stationTBStyle}"/>
@@ -70,75 +455,7 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="温湿度" FontSize="24" Foreground="ForestGreen" Background="NavajoWhite">
-                    <Grid>
-                        <TabControl Name="TCwsd" TabStripPlacement="Left" DockPanel.Dock="Top" Margin="5">
-                            <TabItem Header="尹中路">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <!-- 闸机阵列 1 -->
-                                    <StackPanel Orientation="Horizontal" Margin="10">
-                                        <TextBlock Text="&#xe600;" Width="124" Height="263" Margin="5" Background="LightGray" TextAlignment="Center" VerticalAlignment="Center" FontSize="200"/>
-                                        <TextBlock Text="&#xe600;" Width="100" Height="100" Margin="5" Background="LightGray" TextAlignment="Center" VerticalAlignment="Center"/>
-                                        <TextBlock Text="&#xe600;" Width="100" Height="100" Margin="5" Background="LightGray" TextAlignment="Center" VerticalAlignment="Center"/>
-                                        <TextBlock Text="&#xe600;" Width="100" Height="100" Margin="5" Background="LightGray" TextAlignment="Center" VerticalAlignment="Center"/>
-                                    </StackPanel>
 
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="郭巷">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="郭苑路">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="尹山湖">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="独墅湖南">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header=" 独墅湖&#xA;邻里中心" Margin="0,-1,-2,-3" FontSize="23" >
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="月亮湾">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="松涛街">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="金谷路">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="金尚路">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                            <TabItem Header="桑田岛">
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                                </ScrollViewer>
-                            </TabItem>
-                        </TabControl>
-                    </Grid>
-                </TabItem>
             </TabControl>
         </DockPanel>
     </DockPanel>
