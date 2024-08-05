@@ -7,7 +7,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="res/Common.xaml"/>
-                <ResourceDictionary Source="res/RefreshBtn.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         
