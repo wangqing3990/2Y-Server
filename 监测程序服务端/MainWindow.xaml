@@ -38,27 +38,27 @@
                                             <Label Content="尹中路" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
-                                            <local:AGMshu x:Name="yzlAGM009" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM010" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM011" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM012" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM013" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM014" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM015" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM016" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yzlAGM009" Tag="172.22.43.61" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yzlAGM010" Tag="172.22.43.62" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yzlAGM011" Tag="172.22.43.63" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yzlAGM012" Tag="172.22.43.101" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yzlAGM013" Tag="172.22.43.64" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yzlAGM014" Tag="172.22.43.65" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yzlAGM015" Tag="172.22.43.66" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yzlAGM016" Tag="172.22.43.67" Style="{StaticResource AGMshuStyle}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="yzlAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM004" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yzlAGM001" Tag="172.22.43.11" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yzlAGM002" Tag="172.22.43.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yzlAGM003" Tag="172.22.43.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yzlAGM004" Tag="172.22.43.14" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="yzlAGM005" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM008" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yzlAGM005" Tag="172.22.43.15" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yzlAGM006" Tag="172.22.43.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yzlAGM007" Tag="172.22.43.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yzlAGM008" Tag="172.22.43.18" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -71,31 +71,31 @@
                                             <Label Content="郭巷" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="130,30" Height="100">
-                                            <local:AGMshu x:Name="gxAGM020" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM019" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM018" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM017" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM016" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM015" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM014" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM013" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM012" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="gxAGM011" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM020" Tag="172.22.44.69" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM019" Tag="172.22.44.68" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM018" Tag="172.22.44.67" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM017" Tag="172.22.44.66" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM016" Tag="172.22.44.65" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM015" Tag="172.22.44.101" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM014" Tag="172.22.44.64" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM013" Tag="172.22.44.63" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM012" Tag="172.22.44.62" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="gxAGM011" Tag="172.22.44.61" Style="{StaticResource stdAndstjAGMshu}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="gxAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gxAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gxAGM008" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gxAGM009" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gxAGM010" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM010" Tag="172.22.44.20" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM009" Tag="172.22.44.19" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM008" Tag="172.22.44.18" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM007" Tag="172.22.44.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM006" Tag="172.22.44.16" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="gxAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gxAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gxAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gxAGM004" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gxAGM005" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM005" Tag="172.22.44.15" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM004" Tag="172.22.44.14" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM003" Tag="172.22.44.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM002" Tag="172.22.44.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gxAGM001" Tag="172.22.44.11" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -108,27 +108,27 @@
                                             <Label Content="郭苑路" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
-                                            <local:AGMshu x:Name="gylAGM016" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="gylAGM015" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="gylAGM014" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="gylAGM013" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="gylAGM012" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="gylAGM011" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="gylAGM010" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="gylAGM009" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="gylAGM009" Tag="172.22.45.61" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="gylAGM010" Tag="172.22.45.62" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="gylAGM011" Tag="172.22.45.63" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="gylAGM012" Tag="172.22.45.64" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="gylAGM013" Tag="172.22.45.101" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="gylAGM014" Tag="172.22.45.65" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="gylAGM015" Tag="172.22.45.66" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="gylAGM016" Tag="172.22.45.67" Style="{StaticResource AGMshuStyle}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="gylAGM005" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gylAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gylAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gylAGM008" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gylAGM005" Tag="172.22.45.15" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gylAGM006" Tag="172.22.45.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gylAGM007" Tag="172.22.45.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gylAGM008" Tag="172.22.45.18" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="gylAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gylAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gylAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="gylAGM004" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gylAGM001" Tag="172.22.45.11" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gylAGM002" Tag="172.22.45.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gylAGM003" Tag="172.22.45.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="gylAGM004" Tag="172.22.45.14" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -141,27 +141,27 @@
                                             <Label Content="尹山湖" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
-                                            <local:AGMshu x:Name="yshAGM009" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yshAGM010" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yshAGM011" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yshAGM012" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yshAGM013" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yshAGM014" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yshAGM015" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yshAGM016" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yshAGM016" Tag="172.22.46.67" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yshAGM015" Tag="172.22.46.66" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yshAGM014" Tag="172.22.46.65" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yshAGM013" Tag="172.22.46.101" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yshAGM012" Tag="172.22.46.64" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yshAGM011" Tag="172.22.46.63" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yshAGM010" Tag="172.22.46.62" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="yshAGM009" Tag="172.22.46.61" Style="{StaticResource AGMshuStyle}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="yshAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yshAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yshAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yshAGM004" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yshAGM004" Tag="172.22.46.14" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yshAGM003" Tag="172.22.46.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yshAGM002" Tag="172.22.46.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yshAGM001" Tag="172.22.46.11" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="yshAGM005" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yshAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yshAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yshAGM008" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yshAGM008" Tag="172.22.46.18" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yshAGM007" Tag="172.22.46.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yshAGM006" Tag="172.22.46.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="yshAGM005" Tag="172.22.46.15" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -174,27 +174,27 @@
                                             <Label Content="独墅湖南" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
-                                            <local:AGMshu x:Name="dshnAGM016" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshnAGM015" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshnAGM014" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshnAGM013" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshnAGM012" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshnAGM011" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshnAGM010" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshnAGM009" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshnAGM009" Tag="172.22.47.61" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshnAGM010" Tag="172.22.47.62" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshnAGM011" Tag="172.22.47.63" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshnAGM012" Tag="172.22.47.64" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshnAGM013" Tag="172.22.47.101" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshnAGM014" Tag="172.22.47.65" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshnAGM015" Tag="172.22.47.66" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshnAGM016" Tag="172.22.47.67" Style="{StaticResource AGMshuStyle}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="dshnAGM005" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshnAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshnAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshnAGM008" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshnAGM005" Tag="172.22.47.15" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshnAGM006" Tag="172.22.47.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshnAGM007" Tag="172.22.47.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshnAGM008" Tag="172.22.47.18" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="dshnAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshnAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshnAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshnAGM004" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshnAGM001" Tag="172.22.47.11" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshnAGM002" Tag="172.22.47.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshnAGM003" Tag="172.22.47.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshnAGM004" Tag="172.22.47.14" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -207,27 +207,27 @@
                                             <Label Content="独墅湖邻里中心" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
-                                            <local:AGMshu x:Name="dshllzxAGM009" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshllzxAGM010" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshllzxAGM011" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshllzxAGM012" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshllzxAGM013" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshllzxAGM014" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshllzxAGM015" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="dshllzxAGM016" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshllzxAGM016" Tag="172.22.48.67" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshllzxAGM015" Tag="172.22.48.66" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshllzxAGM014" Tag="172.22.48.65" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshllzxAGM013" Tag="172.22.48.101" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshllzxAGM012" Tag="172.22.48.64" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshllzxAGM011" Tag="172.22.48.63" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshllzxAGM010" Tag="172.22.48.62" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="dshllzxAGM009" Tag="172.22.48.61" Style="{StaticResource AGMshuStyle}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="dshllzxAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshllzxAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshllzxAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshllzxAGM004" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshllzxAGM004" Tag="172.22.48.14" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshllzxAGM003" Tag="172.22.48.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshllzxAGM002" Tag="172.22.48.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshllzxAGM001" Tag="172.22.48.11" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="dshllzxAGM005" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshllzxAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshllzxAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="dshllzxAGM008" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshllzxAGM008" Tag="172.22.48.18" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshllzxAGM007" Tag="172.22.48.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshllzxAGM006" Tag="172.22.48.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="dshllzxAGM005" Tag="172.22.48.15" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -238,31 +238,31 @@
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                                <local:AGMping x:Name="ylwAGM011" Margin="0,5"/>
-                                                <local:AGMping x:Name="ylwAGM012" Margin="0,5"/>
-                                                <local:AGMping x:Name="ylwAGM013" Margin="0,5"/>
-                                                <local:AGMping x:Name="ylwAGM014" Margin="0,5"/>
-                                                <local:AGMping x:Name="ylwAGM005" Margin="0,5"/>
-                                                <local:AGMping x:Name="ylwAGM004" Margin="0,5"/>
-                                                <local:AGMping x:Name="ylwAGM003" Margin="0,5"/>
-                                                <local:AGMping x:Name="ylwAGM002" Margin="0,5"/>
-                                                <local:AGMping x:Name="ylwAGM001" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM011" Tag="172.22.49.61" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM012" Tag="172.22.49.62" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM013" Tag="172.22.49.63" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM014" Tag="172.22.49.64" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM001" Tag="172.22.49.101" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM002" Tag="172.22.49.11" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM003" Tag="172.22.49.12" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM004" Tag="172.22.49.13" Margin="0,5"/>
+                                                <local:AGMping x:Name="ylwAGM005" Tag="172.22.49.14" Margin="0,5"/>
                                             </StackPanel>
                                             <StackPanel Width="600" VerticalAlignment="Center">
                                                 <Label Content="月亮湾" FontSize="50" HorizontalAlignment="Center"></Label>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="0,0">
-                                                <local:AGMping x:Name="ylwAGM015" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM016" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM017" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM018" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM019" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM020" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM021" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM022" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM023" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM024" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM025" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM015" Tag="172.22.49.65" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM016" Tag="172.22.49.66" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM017" Tag="172.22.49.67" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM018" Tag="172.22.49.68" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM019" Tag="172.22.49.61" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM020" Tag="172.22.49.61" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM021" Tag="172.22.49.61" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM022" Tag="172.22.49.61" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM023" Tag="172.22.49.61" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM024" Tag="172.22.49.61" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM025" Tag="172.22.49.61" Margin="0,3"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -275,32 +275,32 @@
                                             <Label Content="松涛街" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="130,30" Height="100">
-                                            <local:AGMshu x:Name="stjAGM011" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM012" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM013" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM014" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM015" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM016" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM017" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM018" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM019" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stjAGM020" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM011" Tag="172.22.50.61" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM012" Tag="172.22.50.62" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM013" Tag="172.22.50.63" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM014" Tag="172.22.50.64" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM015" Tag="172.22.50.65" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM016" Tag="172.22.50.101" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM017" Tag="172.22.50.66" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM018" Tag="172.22.50.67" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM019" Tag="172.22.50.68" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stjAGM020" Tag="172.22.50.69" Style="{StaticResource stdAndstjAGMshu}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="stjAGM001" Margin="0,5"/>
-                                                <local:AGMping x:Name="stjAGM002" Margin="0,5"/>
-                                                <local:AGMping x:Name="stjAGM003" Margin="0,5"/>
-                                                <local:AGMping x:Name="stjAGM004" Margin="0,5"/>
-                                                <local:AGMping x:Name="stjAGM005" Margin="0,5"/>
-                                                <local:AGMping x:Name="stjAGM021" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM001" Tag="172.22.50.11" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM002" Tag="172.22.50.12" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM003" Tag="172.22.50.13" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM004" Tag="172.22.50.14" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM005" Tag="172.22.50.15" Margin="0,5"/>
+                                                <local:AGMping x:Name="stjAGM021" Tag="172.22.50.70" Margin="0,5"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="stjAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stjAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stjAGM008" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stjAGM009" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stjAGM010" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stjAGM006" Tag="172.22.50.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stjAGM007" Tag="172.22.50.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stjAGM008" Tag="172.22.50.18" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stjAGM009" Tag="172.22.50.19" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stjAGM010" Tag="172.22.50.20" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -313,27 +313,27 @@
                                             <Label Content="金谷路" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
-                                            <local:AGMshu x:Name="jglAGM016" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jglAGM015" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jglAGM014" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jglAGM013" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jglAGM012" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jglAGM011" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jglAGM010" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jglAGM009" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jglAGM016" Tag="172.22.51.67" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jglAGM015" Tag="172.22.51.66" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jglAGM014" Tag="172.22.51.65" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jglAGM013" Tag="172.22.51.64" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jglAGM012" Tag="172.22.51.101" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jglAGM011" Tag="172.22.51.63" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jglAGM010" Tag="172.22.51.62" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jglAGM009" Tag="172.22.51.61" Style="{StaticResource AGMshuStyle}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="jglAGM005" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jglAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jglAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jglAGM008" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jglAGM008" Tag="172.22.51.18" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jglAGM007" Tag="172.22.51.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jglAGM006" Tag="172.22.51.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jglAGM005" Tag="172.22.51.15" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="jglAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jglAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jglAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jglAGM004" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jglAGM004" Tag="172.22.51.14" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jglAGM003" Tag="172.22.51.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jglAGM002" Tag="172.22.51.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jglAGM001" Tag="172.22.51.11" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -346,27 +346,27 @@
                                             <Label Content="金尚路" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
-                                            <local:AGMshu x:Name="jslAGM009" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jslAGM010" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jslAGM011" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jslAGM012" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jslAGM013" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jslAGM014" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jslAGM015" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="jslAGM016" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jslAGM016" Tag="172.22.52.67" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jslAGM015" Tag="172.22.52.66" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jslAGM014" Tag="172.22.52.65" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jslAGM013" Tag="172.22.52.101" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jslAGM012" Tag="172.22.52.64" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jslAGM011" Tag="172.22.52.63" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jslAGM010" Tag="172.22.52.62" Style="{StaticResource AGMshuStyle}"/>
+                                            <local:AGMshu x:Name="jslAGM009" Tag="172.22.52.61" Style="{StaticResource AGMshuStyle}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="jslAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jslAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jslAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jslAGM004" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jslAGM004" Tag="172.22.52.14" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jslAGM003" Tag="172.22.52.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jslAGM002" Tag="172.22.52.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jslAGM001" Tag="172.22.52.11" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="jslAGM005" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jslAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jslAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="jslAGM008" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jslAGM008" Tag="172.22.52.18" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jslAGM007" Tag="172.22.52.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jslAGM006" Tag="172.22.52.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="jslAGM005" Tag="172.22.52.15" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -379,31 +379,31 @@
                                             <Label Content="桑田岛" FontSize="50"></Label>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="130,30" Height="100">
-                                            <local:AGMshu x:Name="stdAGM011" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM012" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM013" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM014" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM015" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM016" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM017" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM018" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM019" Style="{StaticResource stdAndstjAGMshu}"/>
-                                            <local:AGMshu x:Name="stdAGM020" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM011" Tag="172.22.53.61" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM012" Tag="172.22.53.62" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM013" Tag="172.22.53.63" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM014" Tag="172.22.53.64" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM015" Tag="172.22.53.65" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM016" Tag="172.22.53.101" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM017" Tag="172.22.53.66" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM018" Tag="172.22.53.67" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM019" Tag="172.22.53.68" Style="{StaticResource stdAndstjAGMshu}"/>
+                                            <local:AGMshu x:Name="stdAGM020" Tag="172.22.53.69" Style="{StaticResource stdAndstjAGMshu}"/>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
                                             <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="stdAGM001" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stdAGM002" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stdAGM003" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stdAGM004" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stdAGM005" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM001" Tag="172.22.53.11" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM002" Tag="172.22.53.12" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM003" Tag="172.22.53.13" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM004" Tag="172.22.53.14" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM005" Tag="172.22.53.15" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="stdAGM006" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stdAGM007" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stdAGM008" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stdAGM009" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="stdAGM010" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM006" Tag="172.22.53.16" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM007" Tag="172.22.53.17" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM008" Tag="172.22.53.18" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM009" Tag="172.22.53.19" Style="{StaticResource AGMpingStyle}"/>
+                                                <local:AGMping x:Name="stdAGM010" Tag="172.22.53.20" Style="{StaticResource AGMpingStyle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
