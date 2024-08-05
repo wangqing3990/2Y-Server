@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace 监测程序服务端
 {
@@ -27,10 +28,9 @@ namespace 监测程序服务端
         {
             InitializeComponent();
         }
-        /*private List<T> FindAGMCustomControls<T>(DependencyObject parent) where T : DependencyObject
+        private List<T> FindAGMCustomControls<T>(DependencyObject parent) where T : DependencyObject
         {
             List<T> controls = new List<T>();
-
             int childCount = VisualTreeHelper.GetChildrenCount(parent);
 
             for (int i = 0; i < childCount; i++)
@@ -50,32 +50,6 @@ namespace 监测程序服务端
                     controls.AddRange(FindAGMCustomControls<T>(child));
                 }
             }
-
-            return controls;
-        }*/
-        private List<T> FindAGMCustomControls<T>(DependencyObject parent) where T : DependencyObject
-        {
-            List<T> controls = new List<T>();
-            Queue<DependencyObject> queue = new Queue<DependencyObject>();
-            queue.Enqueue(parent);
-
-            while (queue.Count > 0)
-            {
-                DependencyObject current = queue.Dequeue();
-                int childCount = VisualTreeHelper.GetChildrenCount(current);
-
-                for (int i = 0; i < childCount; i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(current, i);
-
-                    if (child is T typedChild)
-                    {
-                        controls.Add(typedChild);
-                    }
-                    queue.Enqueue(child);
-                }
-            }
-
             return controls;
         }
 
@@ -84,8 +58,8 @@ namespace 监测程序服务端
         {
             Dispatcher.Invoke(() =>
             {
-                List<AGMping> customControls1 = FindAGMCustomControls<AGMping>(TCjc);
-                List<AGMshu> customControls2 = FindAGMCustomControls<AGMshu>(TCjc);
+                List<AGMping> customControls1 = FindAGMCustomControls<AGMping>(TCwsd);
+                List<AGMshu> customControls2 = FindAGMCustomControls<AGMshu>(TCwsd);
 
                 foreach (AGMping AGMPing in customControls1)
                 {
@@ -101,7 +75,7 @@ namespace 监测程序服务端
         private void MainForm_Load(object sender, RoutedEventArgs e)
         {
             CreateStackPanels();//动态创建设备图标
-            LoadAllTabItems(TCjc);
+            LoadAllTabItems(TCwsd);
             ProcessCustomControls();
 
             try
@@ -116,6 +90,28 @@ namespace 监测程序服务端
             }
 
             // lbVersion.Content = $"版本号：V{Assembly.GetEntryAssembly()?.GetName().Version}";
+        }
+        private void TCwsd_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadAllTabItems(TCwsd);
+
+            // 延迟执行 ProcessCustomControls 确保所有控件都已加载
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(ProcessCustomControls));
+        }
+        private void LoadAllTabItems(TabControl tabControl)
+        {
+            foreach (TabItem tabItem in tabControl.Items)
+            {
+                if (tabItem.Content is FrameworkElement content)
+                {
+                    content.Loaded += (s, e) => { };
+
+                    if (content is TabControl nestedTabControl)
+                    {
+                        LoadAllTabItems(nestedTabControl); // 递归加载嵌套的TabControl中的所有TabItem
+                    }
+                }
+            }
         }
 
         private void initServerSocket()
@@ -398,31 +394,6 @@ namespace 监测程序服务端
             StopListeningForClients();
         }
 
-        private void TCwsd_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LoadAllTabItems(TCjc);
-            ProcessCustomControls();
-        }
-        private void LoadAllTabItems(TabControl tabControl)
-        {
-            foreach (TabItem tabItem in tabControl.Items)
-            {
-                if (tabItem.Content is FrameworkElement content)
-                {
-                    content.Loaded += (s, e) => { };
-
-                    if (content is TabControl nestedTabControl)
-                    {
-                        LoadAllTabItems(nestedTabControl); // 递归加载嵌套的TabControl中的所有TabItem
-                    }
-                }
-            }
-        }
-
-        private void TCjc_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LoadAllTabItems(TCjc);
-            ProcessCustomControls();
-        }
+        
     }
 }

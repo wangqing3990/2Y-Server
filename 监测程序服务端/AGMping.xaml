@@ -12,10 +12,10 @@
                 <Label Name="lblname" Content="AGM001" FontSize="10"  Foreground="Goldenrod"></Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Name="lblTemp" Content="0.0" FontSize="10" VerticalAlignment="Center"></Label>
+                <Label x:Name="lblTemp" Content="0.0" FontSize="10" VerticalAlignment="Center"></Label>
                 <Label Content="℃" FontSize="10" VerticalAlignment="Center"></Label>
-                <Label Content="0.0" FontSize="10" VerticalAlignment="Center"></Label>
-                <Label Name="lblHumi" Content="％" FontSize="10" VerticalAlignment="Center"></Label>
+                <Label x:Name="lblHumi" Content="0.0" FontSize="10" VerticalAlignment="Center"></Label>
+                <Label Content="％" FontSize="10" VerticalAlignment="Center"></Label>
             </StackPanel>
         </StackPanel>
 
