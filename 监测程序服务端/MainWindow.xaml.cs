@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,10 +22,51 @@ namespace 监测程序服务端
     {
         TcpListener serverSocket;
         TcpClient clientSocket;
+        int port = 26730;
+        private bool isListening = false;
 
         public MainWindow()
         {
             InitializeComponent();
+            _ = UDPlistenMethodAsync();
+        }
+
+        private async Task UDPlistenMethodAsync()
+        {
+            using (UdpClient udpServer = new UdpClient(port))
+            {
+                while (true)
+                {
+                    try
+                    {
+                        UdpReceiveResult receiveResult = await udpServer.ReceiveAsync();
+                        byte[] receiveBytes = receiveResult.Buffer;
+                        IPEndPoint remoteEndPoint = receiveResult.RemoteEndPoint;
+                        string receiveString = Encoding.UTF8.GetString(receiveBytes);
+                        // MessageBox.Show(receiveString);
+                        await updateServerTHAsync(receiveString);
+                        await Task.Delay(500);
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
+            }
+        }
+        private async Task updateServerTHAsync(string message)
+        {
+            if (message != null)
+            {
+                var parts = message.Split(',');
+                if (parts.Length == 3)
+                {
+                    var ipAddress = parts[0];
+                    var temperature = parts[1];
+                    var humidity = parts[2];
+
+                    await ProcessCustomControls(ipAddress, temperature, humidity);
+                }
+            }
         }
         private List<T> FindAGMCustomControls<T>(DependencyObject parent) where T : DependencyObject
         {
@@ -52,7 +92,6 @@ namespace 监测程序服务端
             }
             return controls;
         }
-
         // 查找并处理自定义控件
         private void ProcessCustomControls()
         {
@@ -72,14 +111,44 @@ namespace 监测程序服务端
                 }
             });
         }
+        private async Task ProcessCustomControls(string ip, string temp, string humi)
+        {
+            await Dispatcher.InvokeAsync(() =>
+            {
+                List<AGMping> customControls1 = FindAGMCustomControls<AGMping>(TCwsd);
+                List<AGMshu> customControls2 = FindAGMCustomControls<AGMshu>(TCwsd);
+
+                foreach (AGMping AGMPing in customControls1)
+                {
+                    AGMPing.lblname.Content = AGMPing.Name.Substring(Math.Max(0, AGMPing.Name.Length - 6), 6);
+                    if (AGMPing.Tag.ToString() == ip)
+                    {
+                        AGMPing.lblTemp.Content = temp;
+                        AGMPing.lblHumi.Content = humi;
+                        AGMPing.lblTemp.Foreground = Convert.ToDouble(AGMPing.lblTemp.Content.ToString()) > 40 ? Brushes.Red : Brushes.Green;
+                        AGMPing.lblHumi.Foreground = Convert.ToDouble(AGMPing.lblHumi.Content.ToString()) > 70 ? Brushes.Red : Brushes.Green;
+                    }
+                }
+
+                foreach (AGMshu AGMShu in customControls2)
+                {
+                    AGMShu.lblname.Content = AGMShu.Name.Substring(Math.Max(0, AGMShu.Name.Length - 6), 6);
+                    if (AGMShu.Tag.ToString() == ip)
+                    {
+                        AGMShu.lblTemp.Content = temp;
+                        AGMShu.lblHumi.Content = humi;
+                        AGMShu.lblTemp.Foreground = Convert.ToDouble(AGMShu.lblTemp.Content.ToString()) > 40 ? Brushes.Red : Brushes.Green;
+                        AGMShu.lblHumi.Foreground = Convert.ToDouble(AGMShu.lblHumi.Content.ToString()) > 70 ? Brushes.Red : Brushes.Green;
+                    }
+                }
+            });
+        }
         private void MainForm_Load(object sender, RoutedEventArgs e)
         {
-            CreateStackPanels();//动态创建设备图标
-            LoadAllTabItems(TCwsd);
-            ProcessCustomControls();
-
             try
             {
+                CreateStackPanels();//动态创建设备图标
+                LoadAllTabItems(TCwsd);
                 initServerSocket();
 
                 // 启动监听客户端连接
@@ -88,7 +157,6 @@ namespace 监测程序服务端
             catch (Exception exception)
             {
             }
-
             // lbVersion.Content = $"版本号：V{Assembly.GetEntryAssembly()?.GetName().Version}";
         }
         private void TCwsd_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -113,13 +181,11 @@ namespace 监测程序服务端
                 }
             }
         }
-
         private void initServerSocket()
         {
             // 初始化服务端Socket监听
             string ipAddress = "172.22.50.3";
 
-            int port = 49200;
             serverSocket = new TcpListener(IPAddress.Parse(ipAddress), port);
             serverSocket.Start();
         }
@@ -139,8 +205,7 @@ namespace 监测程序服务端
             });
         }
 
-        private bool isListening = false;
-        private Thread listenThread;
+
 
         //监听客户端连接
         private async Task ListenForClients()
@@ -169,9 +234,7 @@ namespace 监测程序服务端
                 }
                 catch (Exception ex)
                 {
-
                 }
-
                 await Task.Delay(500);
             }
         }
@@ -336,12 +399,8 @@ namespace 监测程序服务端
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            if (btn == btnClose)
-            {
-                Close();
-            }
 
-            if (btn == btnMin)
+            if (btn == btnMin || btn==btnClose)
             {
                 WindowState = WindowState.Minimized;
             }
@@ -394,6 +453,6 @@ namespace 监测程序服务端
             StopListeningForClients();
         }
 
-        
+
     }
 }

@@ -256,13 +256,13 @@
                                                 <local:AGMping x:Name="ylwAGM016" Tag="172.22.49.66" Margin="0,3"/>
                                                 <local:AGMping x:Name="ylwAGM017" Tag="172.22.49.67" Margin="0,3"/>
                                                 <local:AGMping x:Name="ylwAGM018" Tag="172.22.49.68" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM019" Tag="172.22.49.61" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM020" Tag="172.22.49.61" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM021" Tag="172.22.49.61" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM022" Tag="172.22.49.61" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM023" Tag="172.22.49.61" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM024" Tag="172.22.49.61" Margin="0,3"/>
-                                                <local:AGMping x:Name="ylwAGM025" Tag="172.22.49.61" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM019" Tag="172.22.49.69" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM020" Tag="172.22.49.70" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM021" Tag="172.22.49.71" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM022" Tag="172.22.49.72" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM023" Tag="172.22.49.73" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM024" Tag="172.22.49.74" Margin="0,3"/>
+                                                <local:AGMping x:Name="ylwAGM025" Tag="172.22.49.75" Margin="0,3"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
