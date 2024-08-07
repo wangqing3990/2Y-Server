@@ -10,8 +10,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using Timer = System.Threading.Timer;
+
 
 namespace 监测程序服务端
 {
@@ -24,12 +25,16 @@ namespace 监测程序服务端
         TcpClient clientSocket;
         int port = 26730;
         private bool isListening = false;
+        private Dictionary<IPEndPoint, DateTime> clientLastHeartbeat = new Dictionary<IPEndPoint, DateTime>();
+        private Timer statusCheckTimer;
 
         public MainWindow()
         {
             InitializeComponent();
             _ = UDPlistenMethodAsync();
+
         }
+
 
         private async Task UDPlistenMethodAsync()
         {
@@ -44,8 +49,8 @@ namespace 监测程序服务端
                         IPEndPoint remoteEndPoint = receiveResult.RemoteEndPoint;
                         string receiveString = Encoding.UTF8.GetString(receiveBytes);
                         // MessageBox.Show(receiveString);
-                        await updateServerTHAsync(receiveString);
-                        await Task.Delay(500);
+                        await updateServerTHAsync(receiveString, remoteEndPoint);
+                        // await Task.Delay(50);
                     }
                     catch (Exception ex)
                     {
@@ -53,21 +58,67 @@ namespace 监测程序服务端
                 }
             }
         }
-        private async Task updateServerTHAsync(string message)
+        private async Task updateServerTHAsync(string message, IPEndPoint remoteEndPoint)
         {
             if (message != null)
             {
                 var parts = message.Split(',');
-                if (parts.Length == 3)
+                if (parts.Length == 2)
                 {
-                    var ipAddress = parts[0];
-                    var temperature = parts[1];
-                    var humidity = parts[2];
+                    // var ipAddress = parts[0];
+                    var temperature = parts[0];
+                    var humidity = parts[1];
 
-                    await ProcessCustomControls(ipAddress, temperature, humidity);
+                    clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
+                    await ProcessCustomControls(remoteEndPoint.Address.ToString(), temperature, humidity);
                 }
             }
         }
+        private async Task GetOfflineDeviceIPAsync()
+        {
+            DateTime now = DateTime.Now;
+            List<IPEndPoint> disconnectedClients = new List<IPEndPoint>();
+            await Dispatcher.InvokeAsync(() =>
+            {
+                List<AGMping> customControls1 = FindAGMCustomControls<AGMping>(TCwsd);
+                List<AGMshu> customControls2 = FindAGMCustomControls<AGMshu>(TCwsd);
+                lock (clientLastHeartbeat)
+                {
+                    foreach (var clientDict in clientLastHeartbeat)
+                    {
+                        if ((now - clientDict.Value).TotalSeconds > 10)
+                        {
+                            disconnectedClients.Add(clientDict.Key);
+                        }
+                    }
+
+                    foreach (var client in disconnectedClients)
+                    {
+                        clientLastHeartbeat.Remove(client);
+                        foreach (AGMping agp in customControls1)
+                        {
+                            if (client.Address.ToString() == agp.Tag.ToString())
+                            {
+                                agp.BorderBrush = Brushes.DarkGray;
+                                agp.lblHumi.Foreground = Brushes.DarkGray;
+                                agp.lblTemp.Foreground = Brushes.DarkGray;
+                                agp.lblbfh.Foreground = Brushes.DarkGray;
+                                agp.lblssd.Foreground = Brushes.DarkGray;
+                            }
+                        }
+                        foreach (AGMshu ags in customControls2)
+                        {
+                            ags.BorderBrush = Brushes.DarkGray;
+                            ags.lblHumi.Foreground = Brushes.DarkGray;
+                            ags.lblTemp.Foreground = Brushes.DarkGray;
+                            ags.lblbfh.Foreground = Brushes.DarkGray;
+                            ags.lblssd.Foreground = Brushes.DarkGray;
+                        }
+                    }
+                }
+            });
+        }
+
         private List<T> FindAGMCustomControls<T>(DependencyObject parent) where T : DependencyObject
         {
             List<T> controls = new List<T>();
@@ -100,14 +151,14 @@ namespace 监测程序服务端
                 List<AGMping> customControls1 = FindAGMCustomControls<AGMping>(TCwsd);
                 List<AGMshu> customControls2 = FindAGMCustomControls<AGMshu>(TCwsd);
 
-                foreach (AGMping AGMPing in customControls1)
+                foreach (AGMping agp in customControls1)
                 {
-                    AGMPing.lblname.Content = AGMPing.Name.Substring(Math.Max(0, AGMPing.Name.Length - 6), 6);
+                    agp.lblname.Content = agp.Name.Substring(Math.Max(0, agp.Name.Length - 6), 6);
                 }
 
-                foreach (AGMshu AGMShu in customControls2)
+                foreach (AGMshu ags in customControls2)
                 {
-                    AGMShu.lblname.Content = AGMShu.Name.Substring(Math.Max(0, AGMShu.Name.Length - 6), 6);
+                    ags.lblname.Content = ags.Name.Substring(Math.Max(0, ags.Name.Length - 6), 6);
                 }
             });
         }
@@ -118,27 +169,33 @@ namespace 监测程序服务端
                 List<AGMping> customControls1 = FindAGMCustomControls<AGMping>(TCwsd);
                 List<AGMshu> customControls2 = FindAGMCustomControls<AGMshu>(TCwsd);
 
-                foreach (AGMping AGMPing in customControls1)
+                foreach (AGMping agp in customControls1)
                 {
-                    AGMPing.lblname.Content = AGMPing.Name.Substring(Math.Max(0, AGMPing.Name.Length - 6), 6);
-                    if (AGMPing.Tag.ToString() == ip)
+                    agp.lblname.Content = agp.Name.Substring(Math.Max(0, agp.Name.Length - 6), 6);
+                    if (agp.Tag.ToString() == ip)
                     {
-                        AGMPing.lblTemp.Content = temp;
-                        AGMPing.lblHumi.Content = humi;
-                        AGMPing.lblTemp.Foreground = Convert.ToDouble(AGMPing.lblTemp.Content.ToString()) > 40 ? Brushes.Red : Brushes.Green;
-                        AGMPing.lblHumi.Foreground = Convert.ToDouble(AGMPing.lblHumi.Content.ToString()) > 70 ? Brushes.Red : Brushes.Green;
+                        agp.lblTemp.Content = temp;
+                        agp.lblHumi.Content = humi;
+                        agp.lblTemp.Foreground = Convert.ToDouble(agp.lblTemp.Content.ToString()) > 40 ? Brushes.Red : Brushes.Green;
+                        agp.lblHumi.Foreground = Convert.ToDouble(agp.lblHumi.Content.ToString()) > 70 ? Brushes.Red : Brushes.Green;
+                        agp.BorderBrush = Brushes.Black;
+                        agp.lblbfh.Foreground = Brushes.Black;
+                        agp.lblssd.Foreground = Brushes.Black;
                     }
                 }
 
-                foreach (AGMshu AGMShu in customControls2)
+                foreach (AGMshu ags in customControls2)
                 {
-                    AGMShu.lblname.Content = AGMShu.Name.Substring(Math.Max(0, AGMShu.Name.Length - 6), 6);
-                    if (AGMShu.Tag.ToString() == ip)
+                    ags.lblname.Content = ags.Name.Substring(Math.Max(0, ags.Name.Length - 6), 6);
+                    if (ags.Tag.ToString() == ip)
                     {
-                        AGMShu.lblTemp.Content = temp;
-                        AGMShu.lblHumi.Content = humi;
-                        AGMShu.lblTemp.Foreground = Convert.ToDouble(AGMShu.lblTemp.Content.ToString()) > 40 ? Brushes.Red : Brushes.Green;
-                        AGMShu.lblHumi.Foreground = Convert.ToDouble(AGMShu.lblHumi.Content.ToString()) > 70 ? Brushes.Red : Brushes.Green;
+                        ags.lblTemp.Content = temp;
+                        ags.lblHumi.Content = humi;
+                        ags.BorderBrush = Brushes.Black;
+                        ags.lblbfh.Foreground = Brushes.Black;
+                        ags.lblssd.Foreground = Brushes.Black;
+                        ags.lblTemp.Foreground = Convert.ToDouble(ags.lblTemp.Content.ToString()) > 40 ? Brushes.Red : Brushes.Green;
+                        ags.lblHumi.Foreground = Convert.ToDouble(ags.lblHumi.Content.ToString()) > 70 ? Brushes.Red : Brushes.Green;
                     }
                 }
             });
@@ -153,6 +210,7 @@ namespace 监测程序服务端
 
                 // 启动监听客户端连接
                 ListenForClients();
+                statusCheckTimer = new Timer(async _ => await GetOfflineDeviceIPAsync(), null, 0, 10000);
             }
             catch (Exception exception)
             {
@@ -400,30 +458,10 @@ namespace 监测程序服务端
         {
             Button btn = (Button)sender;
 
-            if (btn == btnMin || btn==btnClose)
+            if (btn == btnMin || btn == btnClose)
             {
                 WindowState = WindowState.Minimized;
             }
-        }
-
-        private void refreshAnimation()
-        {
-            // 创建一个旋转动画
-            DoubleAnimation rotateAnimation = new DoubleAnimation();
-            rotateAnimation.From = 0;
-            rotateAnimation.To = 360;
-            rotateAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
-            rotateAnimation.RepeatBehavior = new RepeatBehavior(30);
-            // rotateAnimation.RepeatBehavior = RepeatBehavior.Forever;
-
-            // 创建一个旋转转换，并将其应用到TextBlock的RenderTransform属性上
-            RotateTransform transform = new RotateTransform();
-            // refreshIcon.RenderTransformOrigin = new Point(0.5, 0.5);
-            // refreshIcon.RenderTransform = transform;
-
-            // 将动画应用到RotateTransform的Angle属性上
-            transform.BeginAnimation(RotateTransform.AngleProperty, rotateAnimation);
-
         }
 
         private async Task StopListeningForClients()

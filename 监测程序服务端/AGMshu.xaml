@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:监测程序服务端"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="50" BorderBrush="Black" BorderThickness="1">
+             d:DesignHeight="100" d:DesignWidth="50" BorderBrush="DarkGray" BorderThickness="1">
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
@@ -13,12 +13,12 @@
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <Label x:Name="lblTemp" Content="0.0" FontSize="10" HorizontalContentAlignment="Center"></Label>
-                    <Label Content="℃" FontSize="10" Width="24" HorizontalContentAlignment="Center"></Label>
+                    <Label x:Name="lblTemp" Content="00.0" Style="{StaticResource AGMshuLabelStyle}"></Label>
+                    <Label x:Name="lblssd" Content="℃" Width="24" Style="{StaticResource AGMshuLabelStyle}"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label x:Name="lblHumi" Content="0.0" FontSize="10" HorizontalContentAlignment="Center"></Label>
-                    <Label Content="％" FontSize="10" Width="24" HorizontalContentAlignment="Center"></Label>
+                    <Label x:Name="lblHumi" Content="00.0" Style="{StaticResource AGMshuLabelStyle}"></Label>
+                    <Label x:Name="lblbfh" Content="％" Width="24" Style="{StaticResource AGMshuLabelStyle}"></Label>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
