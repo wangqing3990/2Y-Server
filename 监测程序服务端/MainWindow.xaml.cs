@@ -50,7 +50,6 @@ namespace 监测程序服务端
                         string receiveString = Encoding.UTF8.GetString(receiveBytes);
                         // MessageBox.Show(receiveString);
                         await updateServerTHAsync(receiveString, remoteEndPoint);
-                        // await Task.Delay(50);
                     }
                     catch (Exception ex)
                     {
@@ -101,8 +100,10 @@ namespace 监测程序服务端
                             {
                                 agp.BorderBrush = Brushes.DarkGray;
                                 agp.BorderThickness = new Thickness(1);
-                                agp.lblTemp.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
-                                agp.lblHumi.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                // agp.lblTemp.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                // agp.lblHumi.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                agp.lblHumi.Foreground = Brushes.DarkGray;
+                                agp.lblTemp.Foreground = Brushes.DarkGray;
                                 agp.lblbfh.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
                                 agp.lblssd.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
                             }
@@ -113,8 +114,10 @@ namespace 监测程序服务端
                             {
                                 ags.BorderBrush = Brushes.DarkGray;
                                 ags.BorderThickness = new Thickness(1);
-                                ags.lblTemp.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
-                                ags.lblHumi.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                // ags.lblTemp.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                // ags.lblHumi.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                ags.lblHumi.Foreground = Brushes.DarkGray;
+                                ags.lblTemp.Foreground = Brushes.DarkGray;
                                 ags.lblssd.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
                                 ags.lblbfh.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
                             }

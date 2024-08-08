@@ -69,6 +69,7 @@
 
     <Style x:Key="AGMpingOfflineLabelStyle" TargetType="Label" BasedOn="{StaticResource AGMshuOfflineLabelStyle}">
         <!-- <Setter Property="VerticalAlignment" Value="Center"/> -->
+
     </Style>
 
     <Style x:Key="AGMshuOnlineLabelStyle" TargetType="Label" BasedOn="{StaticResource AGMshuOfflineLabelStyle}">
