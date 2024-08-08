@@ -100,19 +100,24 @@ namespace 监测程序服务端
                             if (client.Address.ToString() == agp.Tag.ToString())
                             {
                                 agp.BorderBrush = Brushes.DarkGray;
-                                agp.lblHumi.Foreground = Brushes.DarkGray;
-                                agp.lblTemp.Foreground = Brushes.DarkGray;
-                                agp.lblbfh.Foreground = Brushes.DarkGray;
-                                agp.lblssd.Foreground = Brushes.DarkGray;
+                                agp.BorderThickness = new Thickness(1);
+                                agp.lblTemp.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                agp.lblHumi.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                agp.lblbfh.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                agp.lblssd.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
                             }
                         }
                         foreach (AGMshu ags in customControls2)
                         {
-                            ags.BorderBrush = Brushes.DarkGray;
-                            ags.lblHumi.Foreground = Brushes.DarkGray;
-                            ags.lblTemp.Foreground = Brushes.DarkGray;
-                            ags.lblbfh.Foreground = Brushes.DarkGray;
-                            ags.lblssd.Foreground = Brushes.DarkGray;
+                            if (client.Address.ToString() == ags.Tag.ToString())
+                            {
+                                ags.BorderBrush = Brushes.DarkGray;
+                                ags.BorderThickness = new Thickness(1);
+                                ags.lblTemp.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                ags.lblHumi.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                ags.lblssd.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                ags.lblbfh.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                            }
                         }
                     }
                 }
@@ -176,11 +181,13 @@ namespace 监测程序服务端
                     {
                         agp.lblTemp.Content = temp;
                         agp.lblHumi.Content = humi;
+
+                        agp.BorderBrush = Brushes.Black;
+                        agp.BorderThickness = new Thickness(2);
+                        agp.lblssd.Style = (Style)FindResource("AGMpingOnlineLabelStyle");
+                        agp.lblbfh.Style = (Style)FindResource("AGMpingOnlineLabelStyle");
                         agp.lblTemp.Foreground = Convert.ToDouble(agp.lblTemp.Content.ToString()) > 40 ? Brushes.Red : Brushes.Green;
                         agp.lblHumi.Foreground = Convert.ToDouble(agp.lblHumi.Content.ToString()) > 70 ? Brushes.Red : Brushes.Green;
-                        agp.BorderBrush = Brushes.Black;
-                        agp.lblbfh.Foreground = Brushes.Black;
-                        agp.lblssd.Foreground = Brushes.Black;
                     }
                 }
 
@@ -192,8 +199,9 @@ namespace 监测程序服务端
                         ags.lblTemp.Content = temp;
                         ags.lblHumi.Content = humi;
                         ags.BorderBrush = Brushes.Black;
-                        ags.lblbfh.Foreground = Brushes.Black;
-                        ags.lblssd.Foreground = Brushes.Black;
+                        ags.BorderThickness = new Thickness(2);
+                        ags.lblssd.Style = (Style)FindResource("AGMshuOnlineLabelStyle");
+                        ags.lblbfh.Style = (Style)FindResource("AGMshuOnlineLabelStyle");
                         ags.lblTemp.Foreground = Convert.ToDouble(ags.lblTemp.Content.ToString()) > 40 ? Brushes.Red : Brushes.Green;
                         ags.lblHumi.Foreground = Convert.ToDouble(ags.lblHumi.Content.ToString()) > 70 ? Brushes.Red : Brushes.Green;
                     }
@@ -461,6 +469,11 @@ namespace 监测程序服务端
             if (btn == btnMin || btn == btnClose)
             {
                 WindowState = WindowState.Minimized;
+            }
+
+            if (btn == btnMax)
+            {
+                WindowState = (WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal);
             }
         }
 

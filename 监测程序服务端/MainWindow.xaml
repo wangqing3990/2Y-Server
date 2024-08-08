@@ -19,52 +19,54 @@
                 <Image Source="imgs/SG.ico" Width="40" Height="40" HorizontalAlignment="Left"/>
                 <Label Content="2延监测程序服务端" FontSize="20" Foreground="DarkGoldenrod" Width="180" VerticalContentAlignment="Center"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="40" Width="80" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="40" Width="120" Grid.Column="1">
                 <Button Name="btnMin" Content="&#xe621;" Click="Button_Click" Style="{StaticResource WindowControlButtonStyle}"/>
+                <Button Name="btnMax" Content="&#xe651;" Click="Button_Click" Style="{StaticResource WindowControlButtonStyle}"/>
                 <Button Name="btnClose" Style="{StaticResource WindowControlButtonStyle}" Content="&#xe60a;" Click="Button_Click"/>
             </StackPanel>
         </Grid>
 
         <DockPanel LastChildFill="True">
-            <TabControl x:Name="TCjc">
+            <TabControl x:Name="TCjc" Background="White">
                 <!-- 温湿度 -->
                 <TabItem x:Name="TIwsd" Header="温湿度" Style="{StaticResource mainTIStyle}">
-                    <Grid>
-                        <TabControl x:Name="TCwsd" TabStripPlacement="Left" DockPanel.Dock="Top" Margin="5" SelectionChanged="TCwsd_OnSelectionChanged">
-                            <TabItem Header="尹中路">
+                    <Grid HorizontalAlignment ="Stretch" VerticalAlignment="Stretch">
+                        <TabControl x:Name="TCwsd" TabStripPlacement="Left" DockPanel.Dock="Top" Margin="5" SelectionChanged="TCwsd_OnSelectionChanged" Background="White">
+                            <TabItem Header="尹中路" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <Label Content="尹中路" FontSize="50"></Label>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
-                                            <local:AGMshu x:Name="yzlAGM009" Tag="172.22.43.61" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM010" Tag="172.22.43.62" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM011" Tag="172.22.43.63" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM012" Tag="172.22.43.101" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM013" Tag="172.22.43.64" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM014" Tag="172.22.43.65" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM015" Tag="172.22.43.66" Style="{StaticResource AGMshuStyle}"/>
-                                            <local:AGMshu x:Name="yzlAGM016" Tag="172.22.43.67" Style="{StaticResource AGMshuStyle}"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="50,0">
-                                            <StackPanel Orientation="Vertical">
-                                                <local:AGMping x:Name="yzlAGM001" Tag="172.22.43.11" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM002" Tag="172.22.43.12" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM003" Tag="172.22.43.13" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM004" Tag="172.22.43.14" Style="{StaticResource AGMpingStyle}"/>
+                                    
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Label Content="尹中路" FontSize="50"></Label>
                                             </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="600,0">
-                                                <local:AGMping x:Name="yzlAGM005" Tag="172.22.43.15" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM006" Tag="172.22.43.16" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM007" Tag="172.22.43.17" Style="{StaticResource AGMpingStyle}"/>
-                                                <local:AGMping x:Name="yzlAGM008" Tag="172.22.43.18" Style="{StaticResource AGMpingStyle}"/>
+                                            <StackPanel Orientation="Horizontal" Margin="150,30" Height="100">
+                                                <local:AGMshu x:Name="yzlAGM009" Tag="172.22.43.61" Style="{StaticResource AGMshuStyle}"/>
+                                                <local:AGMshu x:Name="yzlAGM010" Tag="172.22.43.62" Style="{StaticResource AGMshuStyle}"/>
+                                                <local:AGMshu x:Name="yzlAGM011" Tag="172.22.43.63" Style="{StaticResource AGMshuStyle}"/>
+                                                <local:AGMshu x:Name="yzlAGM012" Tag="172.22.43.101" Style="{StaticResource AGMshuStyle}"/>
+                                                <local:AGMshu x:Name="yzlAGM013" Tag="172.22.43.64" Style="{StaticResource AGMshuStyle}"/>
+                                                <local:AGMshu x:Name="yzlAGM014" Tag="172.22.43.65" Style="{StaticResource AGMshuStyle}"/>
+                                                <local:AGMshu x:Name="yzlAGM015" Tag="172.22.43.66" Style="{StaticResource AGMshuStyle}"/>
+                                                <local:AGMshu x:Name="yzlAGM016" Tag="172.22.43.67" Style="{StaticResource AGMshuStyle}"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="50,0">
+                                                <StackPanel Orientation="Vertical">
+                                                    <local:AGMping x:Name="yzlAGM001" Tag="172.22.43.11" Style="{StaticResource AGMpingStyle}"/>
+                                                    <local:AGMping x:Name="yzlAGM002" Tag="172.22.43.12" Style="{StaticResource AGMpingStyle}"/>
+                                                    <local:AGMping x:Name="yzlAGM003" Tag="172.22.43.13" Style="{StaticResource AGMpingStyle}"/>
+                                                    <local:AGMping x:Name="yzlAGM004" Tag="172.22.43.14" Style="{StaticResource AGMpingStyle}"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Vertical" Margin="600,0">
+                                                    <local:AGMping x:Name="yzlAGM005" Tag="172.22.43.15" Style="{StaticResource AGMpingStyle}"/>
+                                                    <local:AGMping x:Name="yzlAGM006" Tag="172.22.43.16" Style="{StaticResource AGMpingStyle}"/>
+                                                    <local:AGMping x:Name="yzlAGM007" Tag="172.22.43.17" Style="{StaticResource AGMpingStyle}"/>
+                                                    <local:AGMping x:Name="yzlAGM008" Tag="172.22.43.18" Style="{StaticResource AGMpingStyle}"/>
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="郭巷">
+                            <TabItem Header="郭巷" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -101,7 +103,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="郭苑路">
+                            <TabItem Header="郭苑路" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -134,7 +136,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="尹山湖">
+                            <TabItem Header="尹山湖" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -167,7 +169,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="独墅湖南">
+                            <TabItem Header="独墅湖南" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -200,7 +202,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header=" 独墅湖邻里中心" Margin="0,-1,-2,-3" FontSize="15" Height="40">
+                            <TabItem Header=" 独墅湖邻里中心" Margin="0,-1,-2,-3" FontSize="15" Height="40"  Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -233,7 +235,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="月亮湾">
+                            <TabItem Header="月亮湾" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" Margin="50,0">
@@ -268,7 +270,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="松涛街">
+                            <TabItem Header="松涛街" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -306,7 +308,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="金谷路">
+                            <TabItem Header="金谷路" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -339,7 +341,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="金尚路">
+                            <TabItem Header="金尚路" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -372,7 +374,7 @@
                                     </StackPanel>
                                 </ScrollViewer>
                             </TabItem>
-                            <TabItem Header="桑田岛">
+                            <TabItem Header="桑田岛" Style="{StaticResource TCwsdTIStyle}">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
