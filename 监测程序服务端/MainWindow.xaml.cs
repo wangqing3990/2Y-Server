@@ -22,6 +22,7 @@ namespace 监测程序服务端
         int port = 26730;
         private bool isListening = false;
         private Dictionary<IPEndPoint, DateTime> clientLastHeartbeat = new Dictionary<IPEndPoint, DateTime>();
+        private List<IPEndPoint> disconnectedClients = new List<IPEndPoint>();
         private Timer statusCheckTimer;
         private StackPanel stackPanel;
         //13个车站设备IP地址
@@ -78,6 +79,10 @@ namespace 监测程序服务端
                 if (message.Contains("V"))
                 {
                     clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
+                    if (disconnectedClients.Contains(remoteEndPoint))
+                    {
+                        disconnectedClients.Remove(remoteEndPoint);
+                    }
                     await ProcessCustomControls(remoteEndPoint.Address.ToString(), message);
                 }
                 else
@@ -89,6 +94,10 @@ namespace 监测程序服务端
                         var humidity = parts[1];
 
                         clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
+                        if (disconnectedClients.Contains(remoteEndPoint))
+                        {
+                            disconnectedClients.Remove(remoteEndPoint);
+                        }
                         await ProcessCustomControls(remoteEndPoint.Address.ToString(), temperature, humidity);
                     }
                 }
@@ -97,7 +106,6 @@ namespace 监测程序服务端
         private async Task GetOfflineDeviceAsync()
         {
             DateTime now = DateTime.Now;
-            List<IPEndPoint> disconnectedClients = new List<IPEndPoint>();
             await Dispatcher.InvokeAsync(() =>
             {
                 List<AGMping> customControls1 = FindCustomControls<AGMping>(TCwsd);
@@ -110,7 +118,7 @@ namespace 监测程序服务端
                     {
                         foreach (var clientDict in clientLastHeartbeat)
                         {
-                            if ((now - clientDict.Value).TotalSeconds > 10)
+                            if ((now - clientDict.Value).TotalSeconds > 5)
                             {
                                 disconnectedClients.Add(clientDict.Key);
                             }
@@ -166,7 +174,6 @@ namespace 监测程序服务端
                 }
             });
         }
-
         private List<T> FindCustomControls<T>(DependencyObject parent) where T : FrameworkElement
         {
             List<T> controls = new List<T>();
@@ -246,7 +253,6 @@ namespace 监测程序服务端
                 }
             });
         }
-
         private async Task ProcessCustomControls(string ip, string version)
         {
             await Dispatcher.InvokeAsync(() =>
@@ -263,17 +269,14 @@ namespace 监测程序服务端
                 }
             });
         }
-
         private void MainForm_Load(object sender, RoutedEventArgs e)
         {
-            
+
             try
             {
                 CreateStackPanels();//动态创建设备图标
-                // LoadAllTabItems(TCwsd);
-                LoadAllTabItems(TCjc);
-
-                statusCheckTimer = new Timer(async _ => await GetOfflineDeviceAsync(), null, 0, 10000);
+                //检测离线定时器
+                statusCheckTimer = new Timer(async _ => await GetOfflineDeviceAsync(), null, 0, 5000);
             }
             catch (Exception ex)
             {
@@ -282,27 +285,21 @@ namespace 监测程序服务端
         private void TCwsd_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LoadAllTabItems(TCwsd);
-
             // 延迟执行 ProcessCustomControls 确保所有控件都已加载
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(ProcessCustomControls));
+            
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(()=>GetOfflineDeviceAsync()));
         }
         private void TCjc_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LoadAllTabItems(TCjc);
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => GetOfflineDeviceAsync()));
         }
         private void LoadAllTabItems(TabControl tabControl)
         {
-            foreach (TabItem tabItem in tabControl.Items)
+            foreach (TabItem tab in tabControl.Items)
             {
-                if (tabItem.Content is FrameworkElement content)
-                {
-                    content.Loaded += (s, e) => { };
-
-                    if (content is TabControl nestedTabControl)
-                    {
-                        LoadAllTabItems(nestedTabControl); // 递归加载嵌套的TabControl中的所有TabItem
-                    }
-                }
+                tab.Loaded += (sender, e) => { /* 更新UI逻辑 */ };
             }
         }
         private void CreateStackPanels()
@@ -345,7 +342,6 @@ namespace 监测程序服务端
         {
             DragMove();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
@@ -360,7 +356,6 @@ namespace 监测程序服务端
                 WindowState = (WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal);
             }
         }
-
         private void MainWindow_OnClosed(object sender, EventArgs e)
         {
             statusCheckTimer.Dispose();
