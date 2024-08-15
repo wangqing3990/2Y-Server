@@ -23,6 +23,7 @@ namespace 监测程序服务端
         private bool isListening = false;
         private Dictionary<IPEndPoint, DateTime> clientLastHeartbeat = new Dictionary<IPEndPoint, DateTime>();
         private List<IPEndPoint> disconnectedClients = new List<IPEndPoint>();
+        private readonly object lockObject = new object();
         private Timer statusCheckTimer;
         private StackPanel stackPanel;
         //13个车站设备IP地址
@@ -78,11 +79,14 @@ namespace 监测程序服务端
             {
                 if (message.Contains("V"))
                 {
+
                     clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
                     if (disconnectedClients.Contains(remoteEndPoint))
                     {
                         disconnectedClients.Remove(remoteEndPoint);
                     }
+
+
                     await ProcessCustomControls(remoteEndPoint.Address.ToString(), message);
                 }
                 else
@@ -93,26 +97,32 @@ namespace 监测程序服务端
                         var temperature = parts[0];
                         var humidity = parts[1];
 
-                        clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
-                        if (disconnectedClients.Contains(remoteEndPoint))
+                        lock (lockObject)
                         {
-                            disconnectedClients.Remove(remoteEndPoint);
+                            clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
+                            if (disconnectedClients.Contains(remoteEndPoint))
+                            {
+                                disconnectedClients.Remove(remoteEndPoint);
+                            }
                         }
                         await ProcessCustomControls(remoteEndPoint.Address.ToString(), temperature, humidity);
                     }
                 }
             }
+
         }
         private async Task GetOfflineDeviceAsync()
         {
             DateTime now = DateTime.Now;
+            // List<IPEndPoint> disconnectedClients = new List<IPEndPoint>();
             await Dispatcher.InvokeAsync(() =>
             {
+
                 List<AGMping> customControls1 = FindCustomControls<AGMping>(TCwsd);
                 List<AGMshu> customControls2 = FindCustomControls<AGMshu>(TCwsd);
                 List<TextBlock> customControls3 = FindCustomControls<TextBlock>(grid);
 
-                lock (clientLastHeartbeat)
+                lock (lockObject)
                 {
                     if (clientLastHeartbeat != null)
                     {
@@ -287,13 +297,13 @@ namespace 监测程序服务端
             LoadAllTabItems(TCwsd);
             // 延迟执行 ProcessCustomControls 确保所有控件都已加载
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(ProcessCustomControls));
-            
-            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(()=>GetOfflineDeviceAsync()));
+
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => GetOfflineDeviceAsync()));
         }
         private void TCjc_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LoadAllTabItems(TCjc);
-            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => GetOfflineDeviceAsync()));
+            // LoadAllTabItems(TCjc);
+            // Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => GetOfflineDeviceAsync()));
         }
         private void LoadAllTabItems(TabControl tabControl)
         {
