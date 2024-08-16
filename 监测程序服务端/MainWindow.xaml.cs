@@ -11,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using Timer = System.Threading.Timer;
 
-
 namespace 监测程序服务端
 {
     /// <summary>
@@ -77,16 +76,22 @@ namespace 监测程序服务端
         {
             if (message != null)
             {
+                lock (lockObject)
+                {
+                    clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
+                    List<IPEndPoint> toRemove = new List<IPEndPoint>();
+                    foreach (var dc in disconnectedClients)
+                    {
+                        if (dc.Address.Equals(remoteEndPoint.Address))
+                        {
+                            toRemove.Add(dc);
+                        }
+                    }
+                    disconnectedClients.RemoveAll(dc => toRemove.Contains(dc));
+                }
+
                 if (message.Contains("V"))
                 {
-
-                    clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
-                    if (disconnectedClients.Contains(remoteEndPoint))
-                    {
-                        disconnectedClients.Remove(remoteEndPoint);
-                    }
-
-
                     await ProcessCustomControls(remoteEndPoint.Address.ToString(), message);
                 }
                 else
@@ -97,27 +102,16 @@ namespace 监测程序服务端
                         var temperature = parts[0];
                         var humidity = parts[1];
 
-                        lock (lockObject)
-                        {
-                            clientLastHeartbeat[remoteEndPoint] = DateTime.Now;
-                            if (disconnectedClients.Contains(remoteEndPoint))
-                            {
-                                disconnectedClients.Remove(remoteEndPoint);
-                            }
-                        }
                         await ProcessCustomControls(remoteEndPoint.Address.ToString(), temperature, humidity);
                     }
                 }
             }
-
         }
         private async Task GetOfflineDeviceAsync()
         {
             DateTime now = DateTime.Now;
-            // List<IPEndPoint> disconnectedClients = new List<IPEndPoint>();
             await Dispatcher.InvokeAsync(() =>
             {
-
                 List<AGMping> customControls1 = FindCustomControls<AGMping>(TCwsd);
                 List<AGMshu> customControls2 = FindCustomControls<AGMshu>(TCwsd);
                 List<TextBlock> customControls3 = FindCustomControls<TextBlock>(grid);
@@ -135,51 +129,57 @@ namespace 监测程序服务端
                         }
                     }
 
-                    foreach (var client in disconnectedClients)
+                    try
                     {
-                        clientLastHeartbeat.Remove(client);
-                        foreach (AGMping agp in customControls1)
+                        foreach (var client in disconnectedClients)
                         {
-                            if (agp.Tag != null)
+                            clientLastHeartbeat.Remove(client);
+                            foreach (AGMping agp in customControls1)
                             {
-                                if (client.Address.ToString() == agp.Tag.ToString())
+                                if (agp.Tag != null)
                                 {
-                                    agp.BorderBrush = Brushes.DarkGray;
-                                    agp.BorderThickness = new Thickness(1);
-                                    // agp.lblTemp.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
-                                    // agp.lblHumi.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
-                                    agp.lblHumi.Foreground = Brushes.DarkGray;
-                                    agp.lblTemp.Foreground = Brushes.DarkGray;
-                                    agp.lblbfh.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
-                                    agp.lblssd.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                    if (client.Address.ToString() == agp.Tag.ToString())
+                                    {
+                                        agp.BorderBrush = Brushes.DarkGray;
+                                        agp.BorderThickness = new Thickness(1);
+                                        // agp.lblTemp.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                        // agp.lblHumi.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                        agp.lblHumi.Foreground = Brushes.DarkGray;
+                                        agp.lblTemp.Foreground = Brushes.DarkGray;
+                                        agp.lblbfh.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                        agp.lblssd.Style = (Style)FindResource("AGMpingOfflineLabelStyle");
+                                    }
+                                }
+                            }
+                            foreach (AGMshu ags in customControls2)
+                            {
+                                if (ags.Tag != null)
+                                {
+                                    if (client.Address.ToString() == ags.Tag.ToString())
+                                    {
+                                        ags.BorderBrush = Brushes.DarkGray;
+                                        ags.BorderThickness = new Thickness(1);
+                                        // ags.lblTemp.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                        // ags.lblHumi.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                        ags.lblHumi.Foreground = Brushes.DarkGray;
+                                        ags.lblTemp.Foreground = Brushes.DarkGray;
+                                        ags.lblssd.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                        ags.lblbfh.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
+                                    }
+                                }
+                            }
+                            foreach (TextBlock tb in customControls3)
+                            {
+                                if (tb.Tag != null && (tb.Tag.ToString() == client.Address.ToString()))
+                                {
+                                    tb.Foreground = Brushes.DarkGray;
+                                    tb.ToolTip = $"{tb.Tag}\r\n{null}";
                                 }
                             }
                         }
-                        foreach (AGMshu ags in customControls2)
-                        {
-                            if (ags.Tag != null)
-                            {
-                                if (client.Address.ToString() == ags.Tag.ToString())
-                                {
-                                    ags.BorderBrush = Brushes.DarkGray;
-                                    ags.BorderThickness = new Thickness(1);
-                                    // ags.lblTemp.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
-                                    // ags.lblHumi.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
-                                    ags.lblHumi.Foreground = Brushes.DarkGray;
-                                    ags.lblTemp.Foreground = Brushes.DarkGray;
-                                    ags.lblssd.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
-                                    ags.lblbfh.Style = (Style)FindResource("AGMshuOfflineLabelStyle");
-                                }
-                            }
-                        }
-                        foreach (TextBlock tb in customControls3)
-                        {
-                            if (tb.Tag != null && (tb.Tag.ToString() == client.Address.ToString()))
-                            {
-                                tb.Foreground = Brushes.DarkGray;
-                                tb.ToolTip = $"{tb.Tag}\r\n{null}";
-                            }
-                        }
+                    }
+                    catch (Exception e)
+                    {
                     }
                 }
             });
@@ -197,7 +197,6 @@ namespace 监测程序服务端
                 {
                     controls.Add(typedChild);
                 }
-
                 controls.AddRange(FindCustomControls<T>(child));
             }
             return controls;
@@ -285,8 +284,7 @@ namespace 监测程序服务端
             try
             {
                 CreateStackPanels();//动态创建设备图标
-                //检测离线定时器
-                statusCheckTimer = new Timer(async _ => await GetOfflineDeviceAsync(), null, 0, 5000);
+                statusCheckTimer = new Timer(async _ => await GetOfflineDeviceAsync(), null, 0, 5000);//检测离线定时器
             }
             catch (Exception ex)
             {
@@ -298,7 +296,7 @@ namespace 监测程序服务端
             // 延迟执行 ProcessCustomControls 确保所有控件都已加载
             Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(ProcessCustomControls));
 
-            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => GetOfflineDeviceAsync()));
+            // Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => GetOfflineDeviceAsync()));
         }
         private void TCjc_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -351,6 +349,17 @@ namespace 监测程序服务端
         private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
+            {
+                if (WindowState == WindowState.Normal)
+                {
+                    WindowState = WindowState.Maximized;
+                }
+                else
+                {
+                    WindowState = WindowState.Normal;
+                }
+            }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
